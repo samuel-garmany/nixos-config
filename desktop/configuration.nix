@@ -277,7 +277,9 @@
     nextcloud-client
     obsidian
     zotero
+    poppler-utils
     libreoffice
+    jre8
     thunderbird
 
     # Media, Modeling, & Utilities
