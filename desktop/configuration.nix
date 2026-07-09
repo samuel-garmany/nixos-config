@@ -77,6 +77,13 @@
   
   services.tailscale.enable = true;
   security.apparmor.enable = true;
+  
+  # Hide extraneous disks
+  services.udev.extraRules = ''
+    # Hide specific encrypted partitions from GNOME Files sidebar
+    ENV{ID_FS_UUID}=="5a37508d-66a3-40ba-a228-cdeb5606e521", ENV{UDISKS_IGNORE}="1"
+    ENV{ID_FS_UUID}=="d57a23be-cf31-405e-ac09-9cb06e6331c1", ENV{UDISKS_IGNORE}="1"
+  '';
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -303,68 +310,80 @@
   };
   
   programs.zoxide.enable = true;
+  
+  fonts.packages = with pkgs; [
+    maple-mono.NF
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Core utilities
+    # Core
+    fd
+    fzf
+    gcc
+    git
+    gnumake
+    lazygit
     (neovim.overrideAttrs (old: {
       postBuild = (old.postBuild or "") + ''
         rm -rf $out/share/applications
       '';
     }))
-    git
     ptyxis
-    sbctl # Required for setting up Lanzaboote keys
+    ripgrep
+    sbctl
 
     # Development & Productivity
     arduino-ide
-    nextcloud-client
-    obsidian
-    zotero
-    poppler-utils
-    libreoffice
     jre8
+    libreoffice
+    lua-language-server
+    nextcloud-client
+    nixd
+    obsidian
+    poppler-utils
+    texlive.combined.scheme-full
+    tree-sitter
+    zotero
 
-    # Media, Modeling, & Utilities
+    # Media & Modeling
+    audacity
+    cine
+    discord
+    freecad
+    freetube
+    gimp
     obs-studio
     orca-slicer
-    freecad
     qgis
-    gimp
-    audacity
-    freetube
-    cine
     slack
-    discord
-    
-    # GNOME Ecosystem & Applications
-    blanket
-    foliate
-    vaults
-    bottles
-    prismlauncher
+
+    # GNOME
+    baobab
     bitwarden-desktop
-    yubioath-flutter
-    zoom-us
-    
+    blanket
+    bottles
+    foliate
     gnome-calculator
     gnome-characters
+    gnome-clocks
     gnome-connections
     gnome-firmware
-    loupe
+    gnome-font-viewer
     gnome-maps
     gnome-network-displays
-    papers
-    snapshot
-    solanum
     gnome-text-editor
     gnome-weather
-    pika-backup
-    baobab
-    gnome-clocks
-    gnome-font-viewer
     inkscape
+    loupe
+    papers
+    pika-backup
+    prismlauncher
+    snapshot
+    vaults
+    yubioath-flutter
+    zoom-us
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
