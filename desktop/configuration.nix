@@ -201,6 +201,18 @@
         ];
       };
 
+      #SanitizeOnShutdown = {
+      #  Cache = true;
+      #  Cookies = true;
+      #  Downloads = true;
+      #  FormData = true;
+      #  History = false; # Example: Keep history, clear everything else
+      #  Sessions = true;
+      #  SiteSettings = false;
+      #  OfflineApps = true;
+      #  Locked = true; # Prevents changing this setting in the Firefox UI
+      #};
+
     Preferences = {
       # Vertical Tabs
       "sidebar.verticalTabs" = true;
@@ -222,17 +234,11 @@
 
       # Cookies & Sessions
       "network.cookie.lifetimePolicy" = 0;
-      "privacy.sanitize.sanitizeOnShutdown" = false;
 
       # Telemetry
-      "datareporting.healthreport.uploadEnabled" = false;
       "datareporting.policy.dataSubmissionEnabled" = false;
       "browser.discovery.enabled" = false; 
-      "app.shield.optoutstudies.enabled" = false;
       "browser.ping-centre.telemetry" = false;
-      "toolkit.telemetry.unified" = false;
-      "toolkit.telemetry.enabled" = false;
-      "toolkit.telemetry.archive.enabled" = false;
 
       # Website Advertising Preferences
       "dom.private-attribution.submission.enabled" = false;
@@ -256,7 +262,7 @@
         updates_disabled  = true;
       };
 
-      "{d63a583e-523c-4443-8557-0466453a2901}" = {
+      "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
         install_url       = moz "bitwarden-password-manager";
         installation_mode = "force_installed";
         updates_disabled  = true;
@@ -268,8 +274,8 @@
         updates_disabled  = true;
       };
 
-      "zotero-connector@zotero.org" = {
-        install_url       = "https://www.zotero.org/download/connector/dl?browser=firefox&version=5.0.210";
+      "zotero@chnm.gmu.edu" = {
+        install_url       = "https://www.zotero.org/download/connector/dl?browser=firefox";
         installation_mode = "force_installed";
         updates_disabled  = true;
       };
@@ -310,7 +316,21 @@
   };
   
   programs.zoxide.enable = true;
-  
+ 
+  # Used for LazyVim
+  # TODO: Remove this when switching to nvf
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      ## Put here any library that is required when running a package
+      ## ...
+      ## Uncomment if you want to use the libraries provided by default in the steam distribution
+      ## but this is quite far from being exhaustive
+      ## https://github.com/NixOS/nixpkgs/issues/354513
+      # (pkgs.runCommand "steamrun-lib" {} "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
+    ];
+  };
+
   fonts.packages = with pkgs; [
     maple-mono.NF
   ];
@@ -332,6 +352,7 @@
     }))
     ptyxis
     ripgrep
+    unzip
     sbctl
 
     # Development & Productivity
