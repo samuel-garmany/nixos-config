@@ -291,9 +291,11 @@
     };
   };
   
-
-  
   programs.zoxide.enable = true;
+  
+  # For Yubikey
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.pcscd.enable = true;
  
   # Used for LazyVim
   # TODO: Remove this when switching to nvf
