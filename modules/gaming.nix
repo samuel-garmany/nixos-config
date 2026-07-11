@@ -11,7 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     discord
-    bottles
+    lutris
     prismlauncher
   ];
 }
