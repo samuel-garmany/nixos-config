@@ -5,6 +5,13 @@
     enable = true;
     settings = {
       vim = {
+        options = {
+          shiftwidth = 2;
+          tabstop = 2;
+          expandtab = true;
+          autoindent = true;
+        };
+
         viAlias = false;
         vimAlias = true;
 
@@ -122,6 +129,7 @@
           toggleterm = {
             enable = true;
             lazygit.enable = true;
+            setupOpts.shade_terminals = false;
           };
         };
 
