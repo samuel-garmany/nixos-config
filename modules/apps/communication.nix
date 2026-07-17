@@ -3,11 +3,8 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        bitwarden-desktop
-        joplin-desktop
-        ptyxis
-        unzip
-        yubioath-flutter
+        slack
+        zoom-us
       ];
     };
 }

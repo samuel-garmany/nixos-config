@@ -3,11 +3,9 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        bitwarden-desktop
-        joplin-desktop
-        ptyxis
-        unzip
-        yubioath-flutter
+        poppler-utils
+        texlive.combined.scheme-full
+        zotero
       ];
     };
 }

@@ -14,12 +14,26 @@
       services.displayManager.gdm.enable = true;
       services.desktopManager.gnome.enable = true;
 
-      # Auto-login configuration
-      # Note: We disable getty@tty1 to prevent a race condition that can break auto-login
-      services.displayManager.autoLogin.enable = true;
-      services.displayManager.autoLogin.user = "user";
-      systemd.services."getty@tty1".enable = lib.mkForce false;
-      systemd.services."autovt@tty1".enable = lib.mkForce false;
+      environment.systemPackages = with pkgs; [
+        baobab
+        blanket
+        foliate
+        gnome-calculator
+        gnome-characters
+        gnome-clocks
+        gnome-connections
+        gnome-firmware
+        gnome-font-viewer
+        gnome-maps
+        gnome-network-displays
+        gnome-text-editor
+        gnome-weather
+        loupe
+        papers
+        pika-backup
+        snapshot
+        vaults
+      ];
 
       services.xserver.excludePackages = [ pkgs.xterm ];
       environment.gnome.excludePackages = with pkgs; [

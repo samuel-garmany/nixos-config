@@ -38,5 +38,7 @@
 
       # Use latest kernel.
       boot.kernelPackages = pkgs.linuxPackages_latest;
+
+      environment.systemPackages = [ pkgs.sbctl ];
     };
 }

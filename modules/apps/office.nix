@@ -3,11 +3,11 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        bitwarden-desktop
-        joplin-desktop
-        ptyxis
-        unzip
-        yubioath-flutter
+        hunspell
+        hunspellDicts.en_US
+        hyphenDicts.en_US
+        jre8
+        libreoffice
       ];
     };
 }
