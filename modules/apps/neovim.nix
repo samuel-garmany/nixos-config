@@ -92,6 +92,8 @@
               # Language modules that are not as common.
               scala.enable = true;
               r.enable = true;
+              
+
             };
 
             visuals = {
@@ -114,7 +116,7 @@
             statusline = {
               lualine = {
                 enable = true;
-                theme = "everforest";
+                theme = "gruvbox";
                 setupOpts = {
                   sections = {
                     lualine_z = { };
@@ -125,8 +127,8 @@
 
             theme = {
               enable = true;
-              name = "everforest";
-              style = "medium";
+              name = "gruvbox";
+              style = "dark";
             };
 
             autopairs.nvim-autopairs.enable = true;
@@ -171,7 +173,10 @@
             };
 
             notify = {
-              nvim-notify.enable = true;
+              nvim-notify = {
+                enable = true;
+                setupOpts.background_colour = "#282828";
+              };
             };
 
             utility = {
@@ -204,6 +209,7 @@
               illuminate.enable = true;
               smartcolumn = {
                 enable = true;
+                setupOpts.disabled_filetypes = [ "dashboard" "alpha" "neo-tree" ];
                 setupOpts.custom_colorcolumn = {
                   # this is a freeform module, it's `buftype = int;` for configuring column position
                   nix = "110";
@@ -343,13 +349,25 @@
                     update_interval = 1000,
                     set_dark_mode = function()
                       vim.api.nvim_set_option_value("background", "dark", {})
-                      vim.cmd("colorscheme everforest")
+                      vim.cmd("colorscheme gruvbox")
                     end,
                     set_light_mode = function()
                       vim.api.nvim_set_option_value("background", "light", {})
-                      vim.cmd("colorscheme everforest")
+                      vim.cmd("colorscheme gruvbox")
                     end,
                   })
+                '';
+              };
+              "ltex-ls-setup" = {
+                package = nvim-lspconfig;
+                setup = ''
+                  require('lspconfig').ltex.setup{
+                    settings = {
+                      ltex = {
+                        language = "en-US",
+                      },
+                    },
+                  }
                 '';
               };
             };

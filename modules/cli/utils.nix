@@ -5,7 +5,6 @@
       ripgrep
       jq
       tldr
-      btop
     ];
   };
 }

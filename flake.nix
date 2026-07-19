@@ -37,11 +37,7 @@
               file: inputs.nixpkgs.lib.hasSuffix ".nix" (builtins.toString file)
             ) allFiles;
           in
-          allModules
-          ++ [
-            ./hosts/desktop/configuration.nix
-            ./hosts/laptop/configuration.nix
-          ];
+          allModules;
 
         flake = {
           nixosConfigurations = {
