@@ -7,4 +7,10 @@
       };
     };
   };
+
+  config.nixos.base = { ... }: {
+    environment.extraSetup = ''
+      rm -f $out/share/applications/btop.desktop
+    '';
+  };
 }

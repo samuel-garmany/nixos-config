@@ -381,5 +381,9 @@
         lazygit
         wl-clipboard
       ];
+
+      environment.extraSetup = ''
+        rm -f $out/share/applications/nvim.desktop
+      '';
     };
 }

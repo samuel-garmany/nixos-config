@@ -51,11 +51,6 @@
         decibels
         gnome-software
       ];
-      environment.extraSetup = ''
-        rm -f $out/share/applications/cups.desktop
-        rm -f $out/share/applications/nvim.desktop
-        rm -f $out/share/applications/btop.desktop
-      '';
       # Configure keymap in X11
       services.xserver.xkb = {
         layout = "us";
