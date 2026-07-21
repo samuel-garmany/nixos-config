@@ -5,6 +5,7 @@
       ripgrep
       jq
       tldr
+      typst
     ];
   };
 }

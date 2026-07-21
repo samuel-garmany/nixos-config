@@ -78,7 +78,12 @@
               nix.enable = true;
               markdown = {
                 enable = true;
-                extensions.render-markdown-nvim.enable = true;
+                extensions.render-markdown-nvim = {
+                  enable = true;
+                  setupOpts = {
+                    latex.enabled = false;
+                  };
+                };
               };
 
               # Languages that are enabled in the maximal configuration.
@@ -96,7 +101,7 @@
               # Language modules that are not as common.
               scala.enable = true;
               r.enable = true;
-              
+              typst.enable = true;
 
             };
 
@@ -322,6 +327,13 @@
                 silent = true;
                 desc = "Indent Right (Keep Selection)";
               }
+              {
+                key = "<leader>tp";
+                mode = [ "n" ];
+                action = "<cmd>TypstPreview<CR>";
+                silent = true;
+                desc = "Start Typst Preview";
+              }
             ];
 
             autocmds = [
@@ -346,6 +358,10 @@
                   vim.g.vimtex_quickfix_open_on_warning = 0
                 '';
               };
+              "typst-preview.nvim" = {
+                package = typst-preview-nvim;
+                setup = "require('typst-preview').setup()";
+              };
               "auto-dark-mode.nvim" = {
                 package = auto-dark-mode-nvim;
                 setup = ''
@@ -365,13 +381,14 @@
               "ltex-ls-setup" = {
                 package = nvim-lspconfig;
                 setup = ''
-                  require('lspconfig').ltex.setup{
+                  vim.lsp.config('ltex', {
                     settings = {
                       ltex = {
                         language = "en-US",
                       },
                     },
-                  }
+                  })
+                  vim.lsp.enable('ltex')
                 '';
               };
               "R.nvim" = {
@@ -387,7 +404,13 @@
                     make -C rnvimserver
                   '';
                 };
-                setup = "require('r').setup()";
+                setup = ''
+                  if vim.fn.executable("R") == 1 then
+                    require("r").setup()
+                  else
+                    vim.g.R_filetypes = {}
+                  end
+                '';
               };
             };
           };
@@ -399,6 +422,8 @@
         gnumake
         lazygit
         wl-clipboard
+        nodejs
+        tree-sitter
       ];
 
       environment.extraSetup = ''
