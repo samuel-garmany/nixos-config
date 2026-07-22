@@ -1,140 +1,139 @@
 {
-  config.nixos.base =
-    {
-      config,
-      pkgs,
-      lib,
-      ...
-    }:
-    {
-      # Install firefox.
-      # Settings are pulled from privacyguides
-      programs.firefox = {
-        enable = true;
-        policies = {
-          # Telemetry & Studies
-          DisableTelemetry = true;
-          DisableFirefoxStudies = true;
+  config.nixos.base = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
+    # Install firefox.
+    # Settings are pulled from privacyguides
+    programs.firefox = {
+      enable = true;
+      policies = {
+        # Telemetry & Studies
+        DisableTelemetry = true;
+        DisableFirefoxStudies = true;
 
-          PasswordManagerEnabled = false;
+        PasswordManagerEnabled = false;
 
-          SearchEngines = {
-            Default = "Brave";
-            Add = [
-              {
-                Name = "Brave";
-                URLTemplate = "https://search.brave.com/search?q={searchTerms}";
-                Method = "GET";
-              }
-            ];
-          };
-		
-          # SanitizeOnShutdown = {
-          #   Cache = true;
-          #   Cookies = true;
-          #   Downloads = true;
-          #   FormData = true;
-          #   History = false; # Example: Keep history, clear everything else
-          #   Sessions = true;
-          #   SiteSettings = false;
-          #   OfflineApps = true;
-          #   Locked = true; # Prevents changing this setting in the Firefox UI
-          # };
-	  
-          Preferences = {
-            # Vertical Tabs
-            "sidebar.verticalTabs" = true;
-
-            # Restore session
-            "browser.startup.page" = 3;
-
-            # Search Suggestions
-            "browser.urlbar.suggest.searches" = false;
-            "browser.urlbar.suggest.quicksuggest.nonlinear" = false;
-            "browser.urlbar.suggest.quicksuggest.sponsored" = false;
-
-            # Sponsored Content
-            "browser.newtabpage.activity-stream.showSponsored" = false;
-            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-
-            # Enhanced Tracking Protection
-            "browser.contentblocking.category" = "strict";
-
-            # Cookies & Sessions
-            "network.cookie.lifetimePolicy" = 0;
-
-            # Telemetry
-            "datareporting.policy.dataSubmissionEnabled" = false;
-            "browser.discovery.enabled" = false;
-            "browser.ping-centre.telemetry" = false;
-
-            # Website Advertising Preferences
-            "dom.private-attribution.submission.enabled" = false;
-
-            # HTTPS-Only Mode
-            "dom.security.https_only_mode" = true;
-
-            # DNS over HTTPS
-            #"network.trr.mode" = 3;
-            #"network.trr.uri" = "https://dns.quad9.net/dns-query";
-          };
-
-          ExtensionSettings =
-            let
-              moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
-            in
+        SearchEngines = {
+          Default = "Brave";
+          Add = [
             {
-              "*".installation_mode = "blocked";
+              Name = "Brave";
+              URLTemplate = "https://search.brave.com/search?q={searchTerms}";
+              Method = "GET";
+            }
+          ];
+        };
 
-              "uBlock0@raymondhill.net" = {
-                install_url = moz "ublock-origin";
-                installation_mode = "force_installed";
-                updates_disabled = true;
+        # SanitizeOnShutdown = {
+        #   Cache = true;
+        #   Cookies = true;
+        #   Downloads = true;
+        #   FormData = true;
+        #   History = false; # Example: Keep history, clear everything else
+        #   Sessions = true;
+        #   SiteSettings = false;
+        #   OfflineApps = true;
+        #   Locked = true; # Prevents changing this setting in the Firefox UI
+        # };
+
+        Preferences = {
+          # Vertical Tabs
+          "sidebar.verticalTabs" = true;
+
+          # Restore session
+          "browser.startup.page" = 3;
+
+          # Search Suggestions
+          "browser.urlbar.suggest.searches" = false;
+          "browser.urlbar.suggest.quicksuggest.nonlinear" = false;
+          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+
+          # Sponsored Content
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
+          # Enhanced Tracking Protection
+          "browser.contentblocking.category" = "strict";
+
+          # Cookies & Sessions
+          "network.cookie.lifetimePolicy" = 0;
+
+          # Telemetry
+          "datareporting.policy.dataSubmissionEnabled" = false;
+          "browser.discovery.enabled" = false;
+          "browser.ping-centre.telemetry" = false;
+
+          # Website Advertising Preferences
+          "dom.private-attribution.submission.enabled" = false;
+
+          # HTTPS-Only Mode
+          "dom.security.https_only_mode" = true;
+
+          # DNS over HTTPS
+          #"network.trr.mode" = 3;
+          #"network.trr.uri" = "https://dns.quad9.net/dns-query";
+        };
+
+        ExtensionSettings = let
+          moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
+        in {
+          "*".installation_mode = "blocked";
+
+          "uBlock0@raymondhill.net" = {
+            install_url = moz "ublock-origin";
+            installation_mode = "force_installed";
+            updates_disabled = true;
+          };
+
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+            install_url = moz "bitwarden-password-manager";
+            installation_mode = "force_installed";
+            updates_disabled = true;
+          };
+
+          "@testpilot-containers" = {
+            install_url = moz "multi-account-containers";
+            installation_mode = "force_installed";
+            updates_disabled = true;
+          };
+        };
+
+        "3rdparty".Extensions = {
+          "uBlock0@raymondhill.net" = {
+            adminSettings = builtins.toJSON {
+              userSettings = {
+                advancedUserEnabled = true;
               };
 
-              "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-                install_url = moz "bitwarden-password-manager";
-                installation_mode = "force_installed";
-                updates_disabled = true;
-              };
+              # Example configuration with exceptions:
+              # (Note: 'noop' overrides the global block and falls back to standard filter lists, which is the safest way to unbreak sites)
+              #
+              # dynamicFilteringString = ''
+              #   * * 3p-script block
+              #   * * 3p-frame block
+              #
+              #   # Exception: allow all 3rd-party scripts to run on nixos.org
+              #   nixos.org * 3p-script noop
+              #
+              #   # Exception: allow scripts from a specific domain (like github.com) to run on nixos.org
+              #   nixos.org github.com * noop
+              # '';
 
-              "@testpilot-containers" = {
-                install_url = moz "multi-account-containers";
-                installation_mode = "force_installed";
-                updates_disabled = true;
-              };
-            };
-
-          "3rdparty".Extensions = {
-            "uBlock0@raymondhill.net" = {
-              adminSettings = builtins.toJSON {
-                userSettings = {
-                  advancedUserEnabled = true;
-                };
-
-                # Example configuration with exceptions:
-                # (Note: 'noop' overrides the global block and falls back to standard filter lists, which is the safest way to unbreak sites)
-                #
-                # dynamicFilteringString = ''
-                #   * * 3p-script block
-                #   * * 3p-frame block
-                #
-                #   # Exception: allow all 3rd-party scripts to run on nixos.org
-                #   nixos.org * 3p-script noop
-                #
-                #   # Exception: allow scripts from a specific domain (like github.com) to run on nixos.org
-                #   nixos.org github.com * noop
-                # '';
-
-                dynamicFilteringString = ''
-                  * * 3p-script block
-                  * * 3p-frame block
-                  canvas.colorado.edu du11hjcvx0uqb.cloudfront.net 3p-script noop
-                '';
-              };
+              dynamicFilteringString = ''
+                * * 3p-script block
+                * * 3p-frame block
+                canvas.colorado.edu * 3p-script noop
+                canvas.colorado.edu * 3p-frame noop
+                github.com * 3p-frame noop
+                github.com * 3p-script noop
+              '';
             };
           };
         };
       };
     };
+  };
 }
