@@ -85,19 +85,16 @@
           "uBlock0@raymondhill.net" = {
             install_url = moz "ublock-origin";
             installation_mode = "force_installed";
-            updates_disabled = true;
           };
 
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
             install_url = moz "bitwarden-password-manager";
             installation_mode = "force_installed";
-            updates_disabled = true;
           };
 
           "@testpilot-containers" = {
             install_url = moz "multi-account-containers";
             installation_mode = "force_installed";
-            updates_disabled = true;
           };
         };
 
