@@ -12,40 +12,57 @@
       # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
       /*
-        =============================================================================
-        802.1X Enterprise Wi-Fi Protocol (e.g. Eduroam & CU Secure)
-        =============================================================================
-        
-        By default, NixOS provides a declarative approach to system configuration. 
-        However, defining NetworkManager profiles involving private keys or passwords 
-        purely declaratively requires storing secrets in the world-readable `/nix/store`. 
-        Without a dedicated secrets management tool (e.g., `sops-nix`), this poses a 
-        significant security risk. 
-        
-        Therefore, the recommended standard approach for Enterprise Wi-Fi on NixOS 
-        is to utilize NetworkManager's imperative configuration for secrets, while 
-        storing the necessary certificates in a mutable system directory.
+        802.1X Enterprise Wi-Fi (eduroam & CU Secure)
+
+        NetworkManager connection profiles for 802.1X networks contain secrets
+        (passwords, client certificates, private keys). Declaring these in Nix
+        would expose them in the world-readable /nix/store. Without a secrets
+        manager like sops-nix or agenix, these profiles must be configured
+        imperatively with nmcli.
+
+        The JoinNow (SecureW2) provisioning script places certificates into
+        ~/.joinnow, but wpa_supplicant cannot read them there. Its systemd unit
+        sets ProtectHome=true and ProtectSystem=strict, which blocks access to
+        most of the filesystem. The directory /etc/wpa_supplicant is accessible
+        because it is listed in BindPaths=, and the service runs as
+        User=wpa_supplicant, so certificates must be owned by that user.
+
+        Note that /var/lib/NetworkManager/certs does not work for the same
+        reason; it is not bind-mounted into the sandbox.
+
+        This directory persists across nixos-rebuild but not across fresh
+        installs. Client certificates from SecureW2 expire after roughly one
+        year and will need to be regenerated.
 
         To reproduce this setup on a new machine:
 
-        1. Execute the university-provided JoinNow (SecureW2) script. This will 
-           imperatively generate the NetworkManager profiles and place certificates 
-           into `~/.joinnow`.
-        2. The `wpa_supplicant` backend operates under a strict systemd sandbox 
-           (`ProtectHome=true`) and cannot read certificates left in `~/.joinnow`. 
-           Move ALL certificates (public CA certs and private client certs) to a 
-           secure system directory:
-             sudo mkdir -p /var/lib/NetworkManager/certs
-             sudo cp -r ~/.joinnow/* /var/lib/NetworkManager/certs/
-             sudo chown -R root:root /var/lib/NetworkManager/certs
-             sudo chmod -R 600 /var/lib/NetworkManager/certs
-             sudo chmod 700 /var/lib/NetworkManager/certs
-             sudo chmod 700 /var/lib/NetworkManager/certs/tls-client-certs
-        3. Update the NetworkManager profiles (`nmcli connection modify`) to point 
-           to the correct system paths (`/var/lib/NetworkManager/certs/...`).
-        4. Disable MAC address randomization for networks that aggressively filter 
-           unknown hardware addresses (e.g., eduroam):
-             nmcli connection modify "eduroam [uuid]" 802-11-wireless.mac-address-randomization 1
+        1. Run the JoinNow (SecureW2) provisioning script. This creates the
+           NetworkManager profiles and places certificates in ~/.joinnow.
+
+        2. Copy the certificates into a path the sandbox can reach:
+
+             sudo mkdir -p /etc/wpa_supplicant/certs
+             sudo cp -r ~/.joinnow/* /etc/wpa_supplicant/certs/
+             sudo chown -R wpa_supplicant:wpa_supplicant /etc/wpa_supplicant/certs
+             sudo chmod -R 600 /etc/wpa_supplicant/certs
+             sudo chmod 700 /etc/wpa_supplicant/certs
+             sudo chmod 700 /etc/wpa_supplicant/certs/tls-client-certs
+
+        3. Update each connection profile to point to the new paths. Use sudo
+           because nmcli validates the file paths on modify and the certificates
+           are only readable by wpa_supplicant:
+
+             sudo nmcli connection modify "<name>" \
+               802-1x.ca-cert "/etc/wpa_supplicant/certs/<ca-bundle>.pem"
+
+           For TLS-based profiles (CU Secure), also update 802-1x.client-cert
+           and 802-1x.private-key.
+
+        4. Disable MAC address randomization for eduroam, which filters
+           connections from unregistered hardware addresses:
+
+             nmcli connection modify "eduroam [<uuid>]" \
+               802-11-wireless.cloned-mac-address permanent
       */
 
       # Enable networking
