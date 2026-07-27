@@ -21,15 +21,16 @@
 
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users."user" = topArgs.config.hm.base;
-
-      # Auto-login configuration
-      # Note: getty@tty1 and autovt@tty1 are disabled to prevent a race condition
-      services.displayManager.autoLogin.enable = true;
-      services.displayManager.autoLogin.user = "user";
-      systemd.services."getty@tty1".enable = lib.mkForce false;
-      systemd.services."autovt@tty1".enable = lib.mkForce false;
+      home-manager.backupFileExtension = "backup";
     };
+
+  config.nixos.desktop = { ... }: {
+    home-manager.users."user" = topArgs.config.hm.desktop;
+  };
+
+  config.nixos.laptop = { ... }: {
+    home-manager.users."user" = topArgs.config.hm.laptop;
+  };
 
   config.hm.base = { ... }: {
     home.stateVersion = "26.05";

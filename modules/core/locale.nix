@@ -7,9 +7,33 @@
       ...
     }:
     {
-      # Enable automatic timezone and location services for weather (IP-based fallback)
+      # Enable automatic timezone and location services for weather and Night Color (Wi-Fi & IP fallback)
       services.automatic-timezoned.enable = true;
-      services.geoclue2.enable = true;
+      services.geoclue2 = {
+        enable = true;
+        enableDemoAgent = true;
+        enableWifi = true;
+        appConfig = {
+          "gammastep" = {
+            isAllowed = true;
+            isSystem = false;
+          };
+          "redshift" = {
+            isAllowed = true;
+            isSystem = false;
+          };
+          "thunderbird" = {
+            isAllowed = true;
+            isSystem = false;
+          };
+        };
+      };
+
+      # Configure keymap in X11
+      services.xserver.xkb = {
+        layout = "us";
+        variant = "";
+      };
 
       # Select internationalisation properties.
       i18n.defaultLocale = "en_US.UTF-8";

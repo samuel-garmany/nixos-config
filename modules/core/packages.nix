@@ -4,6 +4,7 @@
       arduino-ide
       audacity
       bitwarden-desktop
+      blanket
       cine
       freecad
       freetube
@@ -13,10 +14,11 @@
       hyphenDicts.en_US
       inkscape
       jre8
-      libreoffice
+      libreoffice-qt
       ltex-ls
       obs-studio
       orca-slicer
+      pika-backup
       poppler-utils
       qgis
       slack
