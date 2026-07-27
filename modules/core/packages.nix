@@ -17,12 +17,12 @@
       ltex-ls
       obs-studio
       orca-slicer
-      pika-backup
       poppler-utils
       qgis
       slack
       texlive.combined.scheme-full
       unzip
+      vorta
       yubioath-flutter
       zoom-us
     ];
