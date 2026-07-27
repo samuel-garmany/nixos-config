@@ -77,18 +77,18 @@
           #"network.trr.uri" = "https://dns.quad9.net/dns-query";
         };
 
-        ExtensionSettings = let
-          moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
-        in {
+        ExtensionSettings = {
+          # Block all extensions by default
           "*".installation_mode = "blocked";
 
+          # Allow and install specific extensions by their GUID
           "uBlock0@raymondhill.net" = {
-            install_url = moz "ublock-origin";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "force_installed";
           };
 
           "@testpilot-containers" = {
-            install_url = moz "multi-account-containers";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
             installation_mode = "force_installed";
           };
         };

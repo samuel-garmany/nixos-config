@@ -7,10 +7,10 @@
       ];
 
       programs.firefox.policies.ExtensionSettings = {
+        # Allow and install specific extensions by their GUID
         "{8419486a-54e9-11e8-9401-ac9e17909436}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/file/4094039/joplin_web_clipper-2.11.2.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/joplin-web-clipper/latest.xpi";
           installation_mode = "force_installed";
-          updates_disabled = true;
         };
       };
     };
