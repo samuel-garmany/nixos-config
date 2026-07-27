@@ -13,7 +13,7 @@
       hyphenDicts.en_US
       inkscape
       jre8
-      libreoffice-qt
+      libreoffice
       ltex-ls
       obs-studio
       orca-slicer
