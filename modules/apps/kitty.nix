@@ -69,7 +69,7 @@
         confirm_os_window_close = 0;
 
         # The edge to show the tab bar on, top or bottom.
-        tab_bar_edge = "top";
+        #tab_bar_edge = "top";
 
         # The tab bar style, can be one of:
         # fade
@@ -114,7 +114,7 @@
         #     The current tab title.
         # index
         #     The tab index usable with goto_tab N goto_tab shortcuts.
-        tab_title_template = "{index}:{title}";
+        #tab_title_template = "{index}:{title}";
 
         # Modify font characteristics such as the position or thickness of
         # the underline and strikethrough. The modifications can have the
