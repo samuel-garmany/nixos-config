@@ -37,6 +37,8 @@
       };
     };
 
+    programs.partition-manager.enable = true;
+
     # Exclude default Plasma applications that are replaced by preferred alternatives (e.g., Konsole -> Kitty)
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       discover
