@@ -22,6 +22,21 @@
     systemd.services."getty@tty1".enable = lib.mkForce false;
     systemd.services."autovt@tty1".enable = lib.mkForce false;
 
+    boot.initrd.systemd.enable = true;
+    systemd.services.plasmalogin.serviceConfig.KeyringMode = "inherit";
+    security.pam.services.plasmalogin-autologin.rules.auth = {
+      systemd_loadkey = {
+        order = 0;
+        control = "optional";
+        modulePath = "${pkgs.systemd}/lib/security/pam_systemd_loadkey.so";
+      };
+      plasmalogin = {
+        order = 1;
+        control = "include";
+        modulePath = "plasmalogin";
+      };
+    };
+
     # Exclude default Plasma applications that are replaced by preferred alternatives (e.g., Konsole -> Kitty)
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       discover
