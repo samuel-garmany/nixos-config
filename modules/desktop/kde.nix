@@ -44,6 +44,13 @@
       plasma-vault
     ];
 
+    programs.firefox.policies.ExtensionSettings = {
+      "plasma-browser-integration@kde.org" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
+        installation_mode = "force_installed";
+      };
+    };
+
     # Allow KDE Plasma location services in Geoclue
     services.geoclue2.appConfig = {
       "org.kde.kwin_wayland" = {

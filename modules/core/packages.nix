@@ -3,7 +3,6 @@
     environment.systemPackages = with pkgs; [
       arduino-ide
       audacity
-      bitwarden-desktop
       blanket
       cine
       freecad

@@ -87,11 +87,6 @@
             installation_mode = "force_installed";
           };
 
-          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-            install_url = moz "bitwarden-password-manager";
-            installation_mode = "force_installed";
-          };
-
           "@testpilot-containers" = {
             install_url = moz "multi-account-containers";
             installation_mode = "force_installed";
