@@ -20,9 +20,11 @@
     boot.initrd.systemd.enable = true;
     systemd.services.display-manager.serviceConfig.KeyringMode = "inherit";
 
-    security.pam.services.greetd.text = pkgs.lib.mkBefore ''
-      auth optional ${pkgs.systemd}/lib/security/pam_systemd_loadkey.so
-    '';
+    security.pam.services.greetd.rules.auth.systemd_loadkey = {
+      order = 0;
+      control = "optional";
+      modulePath = "${pkgs.systemd}/lib/security/pam_systemd_loadkey.so";
+    };
     services.system76-scheduler.enable = true;
 
     programs.firefox.preferences = {
