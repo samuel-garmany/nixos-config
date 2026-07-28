@@ -17,14 +17,6 @@
       user = "user";
     };
 
-    boot.initrd.systemd.enable = true;
-    systemd.services.greetd.serviceConfig.KeyringMode = lib.mkForce "inherit";
-
-    security.pam.services.greetd.rules.auth.systemd_loadkey = {
-      order = 0;
-      control = "optional";
-      modulePath = "${pkgs.systemd}/lib/security/pam_systemd_loadkey.so";
-    };
     services.system76-scheduler.enable = true;
 
     programs.firefox.preferences = {
