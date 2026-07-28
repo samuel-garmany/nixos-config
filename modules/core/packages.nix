@@ -4,7 +4,6 @@
       arduino-ide
       audacity
       blanket
-      cine
       freecad
       freetube
       gimp

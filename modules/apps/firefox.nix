@@ -38,7 +38,6 @@
         #   OfflineApps = true;
         #   Locked = true; # Prevents changing this setting in the Firefox UI
         # };
-
         Preferences = {
           # Vertical Tabs
           "sidebar.verticalTabs" = true;

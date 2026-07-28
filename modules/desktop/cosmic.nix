@@ -16,6 +16,13 @@
       # Replace `yourUserName` with the actual username of user who should be automatically logged in
       user = "user";
     };
+
+    boot.initrd.systemd.enable = true;
+    systemd.services.display-manager.serviceConfig.KeyringMode = "inherit";
+
+    security.pam.services.greetd.text = pkgs.lib.mkBefore ''
+      auth optional ${pkgs.systemd}/lib/security/pam_systemd_loadkey.so
+    '';
     services.system76-scheduler.enable = true;
 
     programs.firefox.preferences = {
@@ -25,15 +32,17 @@
 
     environment.systemPackages = with pkgs; [
       baobab
-      gnome-calculator
+      cosmic-ext-calculator
       gnome-characters
       gnome-disk-utility
       gnome-maps
       gocryptfs
-      loupe
-      papers
       snapshot
       vaults
+    ];
+
+    environment.cosmic.excludePackages = with pkgs; [
+      cosmic-store
     ];
   };
 }

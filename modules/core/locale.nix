@@ -11,7 +11,7 @@
       services.automatic-timezoned.enable = true;
       services.geoclue2 = {
         enable = true;
-        enableDemoAgent = true;
+        enableDemoAgent = lib.mkForce true;
         enableWifi = true;
         appConfig = {
           "gammastep" = {
