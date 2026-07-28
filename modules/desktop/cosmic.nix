@@ -18,7 +18,7 @@
     };
 
     boot.initrd.systemd.enable = true;
-    systemd.services.display-manager.serviceConfig.KeyringMode = "inherit";
+    systemd.services.greetd.serviceConfig.KeyringMode = lib.mkForce "inherit";
 
     security.pam.services.greetd.rules.auth.systemd_loadkey = {
       order = 0;
