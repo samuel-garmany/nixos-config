@@ -3,6 +3,7 @@
     environment.systemPackages = with pkgs; [
       arduino-ide
       audacity
+      anydesk
       blanket
       freecad
       freetube
