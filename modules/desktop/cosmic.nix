@@ -32,7 +32,6 @@
       gnome-maps
       gocryptfs
       snapshot
-      vaults
     ];
 
     environment.cosmic.excludePackages = with pkgs; [

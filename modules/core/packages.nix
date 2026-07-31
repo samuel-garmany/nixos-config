@@ -18,10 +18,11 @@
       obs-studio
       orca-slicer
       poppler-utils
-      qgis
+      # qgis # Currently failing to build on unstable (python3-qscintilla-qt6 issue)
       slack
-      texlive.combined.scheme-full
+      texliveFull
       unzip
+      veracrypt
       vorta
       yubioath-flutter
       zoom-us
