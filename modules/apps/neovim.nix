@@ -212,18 +212,7 @@
             };
             colorizer.enable = true;
             illuminate.enable = true;
-            smartcolumn = {
-              enable = true;
-              setupOpts.disabled_filetypes = ["dashboard" "alpha" "neo-tree"];
-              setupOpts.custom_colorcolumn = {
-                # this is a freeform module, it's `buftype = int;` for configuring column position
-                nix = "110";
-                python = "90";
-                c = "80";
-                cpp = "80";
-                tex = "80";
-              };
-            };
+            smartcolumn.enable = false;
             fastaction.enable = true;
           };
 
