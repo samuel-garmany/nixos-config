@@ -30,7 +30,7 @@
       gnome-characters
       gnome-disk-utility
       gnome-maps
-      gocryptfs
+      gnome-weather
       snapshot
     ];
 

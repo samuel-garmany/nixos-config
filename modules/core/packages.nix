@@ -18,7 +18,7 @@
       obs-studio
       orca-slicer
       poppler-utils
-      # qgis # Currently failing to build on unstable (python3-qscintilla-qt6 issue)
+      qgis
       slack
       texliveFull
       unzip
