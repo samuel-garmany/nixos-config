@@ -127,6 +127,7 @@
     "screenOverrides": []
   },
   "general": {
+    "avatarImage": "/home/user/.face",
     "dimmerOpacity": 0.2,
     "showScreenCorners": false,
     "forceBlackScreenCorners": false,
@@ -181,7 +182,7 @@
     }
   },
   "ui": {
-    "fontDefault": "DejaVu Sans",
+    "fontDefault": "Adwaita Sans",
     "fontFixed": "monospace",
     "fontDefaultScale": 1,
     "fontFixedScale": 1,
@@ -199,7 +200,7 @@
     "name": "Boulder",
     "weatherEnabled": true,
     "weatherShowEffects": true,
-    "useFahrenheit": false,
+    "useFahrenheit": true,
     "use12hourFormat": false,
     "showWeekNumberInCalendar": false,
     "showCalendarEvents": true,
@@ -228,6 +229,7 @@
   "wallpaper": {
     "enabled": true,
     "overviewEnabled": true,
+    "directory": "/home/user/Pictures/Wallpapers",
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
     "showHiddenFiles": false,
@@ -320,16 +322,16 @@
         "id": "audio-card"
       },
       {
-        "enabled": false,
+        "enabled": true,
         "id": "brightness-card"
       },
       {
         "enabled": true,
-        "id": "weather-card"
+        "id": "media-sysmon-card"
       },
       {
-        "enabled": true,
-        "id": "media-sysmon-card"
+        "enabled": false,
+        "id": "weather-card"
       }
     ]
   },

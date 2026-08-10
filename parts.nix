@@ -12,6 +12,14 @@
       username = inputs.nixpkgs.lib.mkOption {
         default = "";
       };
+
+      fullName = inputs.nixpkgs.lib.mkOption {
+        default = "";
+      };
+
+      email = inputs.nixpkgs.lib.mkOption {
+        default = "";
+      };
     };
   };
 

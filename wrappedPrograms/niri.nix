@@ -133,6 +133,19 @@
       # https://niri-wm.github.io/niri/Configuration:-Animations
       animations = {};
 
+      # Hot corners let you toggle the overview by putting your mouse at a
+      # corner of a monitor.
+      # https://niri-wm.github.io/niri/Configuration:-Gestures
+      gestures.hot-corners.off = null;
+
+      # Change the theme and size of the cursor as well as set the
+      # XCURSOR_THEME and XCURSOR_SIZE environment variables.
+      # https://niri-wm.github.io/niri/Configuration:-Miscellaneous
+      cursor = {
+        xcursor-theme = "Adwaita";
+        xcursor-size = 24;
+      };
+
       # Window rules let you adjust behavior for individual windows.
       # https://niri-wm.github.io/niri/Configuration:-Window-Rules
       window-rules = [

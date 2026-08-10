@@ -11,7 +11,7 @@
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${config.preferences.user.name} = {
       isNormalUser = true;
-      description = "Samuel Garmany";
+      description = self.fullName;
       extraGroups = [
         "dialout"
         "networkmanager"

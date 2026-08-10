@@ -9,6 +9,7 @@
     gtksettings = ''
       [Settings]
       gtk-icon-theme-name = ${icon-theme-name}
+      gtk-cursor-theme-name = ${icon-theme-name}
     '';
   in {
     environment.etc = {

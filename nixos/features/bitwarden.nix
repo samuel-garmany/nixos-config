@@ -15,5 +15,12 @@
         installation_mode = "force_installed";
       };
     };
+
+    # Most installations will only require the base URL, however some unique
+    # setups may require you to enter URLs for each service independently.
+    # https://bitwarden.com/help/browserext-deploy/
+    programs.firefox.policies."3rdparty".Extensions = {
+      "{446900e4-71c2-419f-a6a7-df9c091e268b}".environment.base = "https://vault.garmany.me";
+    };
   };
 }

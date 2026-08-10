@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   perSystem = {pkgs, ...}: let
     ignores = pkgs.writeText "gitignore" ''
       .envrc
@@ -12,8 +16,8 @@
         inherit pkgs;
         settings = {
           user = {
-            name = "Samuel Garmany";
-            email = "samuel@example.com";
+            name = self.fullName;
+            email = self.email;
           };
           init.defaultBranch = "main";
           core.excludesFile = toString ignores;
