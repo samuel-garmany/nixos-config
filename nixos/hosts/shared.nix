@@ -33,12 +33,15 @@
       self.nixosModules.freecad
       self.nixosModules.freetube
       self.nixosModules.gimp
+      self.nixosModules.gnome-weather
+      self.nixosModules.gocryptfs
       self.nixosModules.inkscape
       self.nixosModules.latex
       self.nixosModules.libreoffice
       self.nixosModules.nautilus
       self.nixosModules.obs-studio
       self.nixosModules.qalculate
+      self.nixosModules.qgis
       self.nixosModules.orca-slicer
       self.nixosModules.slack
       self.nixosModules.veracrypt
