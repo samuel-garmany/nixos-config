@@ -14,9 +14,5 @@
         cups-browsed
       ];
     };
-
-    environment.extraSetup = ''
-      rm -f $out/share/applications/cups.desktop
-    '';
   };
 }

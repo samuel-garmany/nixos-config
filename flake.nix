@@ -14,12 +14,6 @@
     wrappers.url = "github:Lassulus/wrappers";
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
-    # Declarative dotfiles for the few things a wrapper cannot cover
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Lanzaboote handles Secure Boot for NixOS
     lanzaboote = {
       url = "github:nix-community/lanzaboote";

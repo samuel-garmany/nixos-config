@@ -381,9 +381,5 @@
       nodejs
       tree-sitter
     ];
-
-    environment.extraSetup = ''
-      rm -f $out/share/applications/nvim.desktop
-    '';
   };
 }

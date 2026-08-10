@@ -5,6 +5,7 @@
       self.nixosModules.general
 
       # system
+      self.nixosModules.bluetooth
       self.nixosModules.boot
       self.nixosModules.hardware
       self.nixosModules.locale
@@ -16,6 +17,7 @@
 
       # desktop
       self.nixosModules.desktop
+      self.nixosModules.idle
       self.nixosModules.printing
 
       # apps

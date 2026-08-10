@@ -5,7 +5,6 @@
     ...
   }: {
     imports = [
-      self.nixosModules.extra_hjem
       self.nixosModules.nix
     ];
 

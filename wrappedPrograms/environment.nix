@@ -20,7 +20,6 @@
         # wrapped
         pkgs.btop
         self'.packages.git
-        self'.packages.nh
 
         pkgs.fd
         pkgs.ripgrep

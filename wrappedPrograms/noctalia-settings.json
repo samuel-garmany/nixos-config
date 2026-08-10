@@ -35,7 +35,7 @@
         {
           "characterCount": 2,
           "colorizeIcons": false,
-          "emptyColor": "secondary",
+          "emptyColor": "none",
           "enableScrollWheel": true,
           "focusedColor": "primary",
           "followFocusedScreen": false,
@@ -47,7 +47,7 @@
           "occupiedColor": "secondary",
           "pillSize": 0.6,
           "reverseScroll": false,
-          "showApplications": true,
+          "showApplications": false,
           "showBadge": true,
           "showLabelsOnlyWhenOccupied": true,
           "unfocusedIconsOpacity": 1
@@ -66,16 +66,25 @@
       ],
       "right": [
         {
-          "hideWhenZero": true,
-          "hideWhenZeroUnread": false,
-          "iconColor": "none",
-          "id": "NotificationHistory",
-          "showUnreadBadge": true,
-          "unreadBadgeColor": "primary"
+          "blacklist": [],
+          "chevronColor": "none",
+          "colorizeIcons": false,
+          "drawerEnabled": true,
+          "hidePassive": false,
+          "id": "Tray",
+          "pinned": []
         },
         {
+          "displayMode": "onhover",
           "iconColor": "none",
-          "id": "PowerProfile"
+          "id": "Network",
+          "textColor": "none"
+        },
+        {
+          "displayMode": "onhover",
+          "iconColor": "none",
+          "id": "Bluetooth",
+          "textColor": "none"
         },
         {
           "displayMode": "onhover",
@@ -92,13 +101,26 @@
           "textColor": "none"
         },
         {
-          "blacklist": [],
-          "chevronColor": "none",
-          "colorizeIcons": false,
-          "drawerEnabled": true,
-          "hidePassive": false,
-          "id": "Tray",
-          "pinned": []
+          "deviceNativePath": "__default__",
+          "displayMode": "graphic-clean",
+          "hideIfIdle": false,
+          "hideIfNotDetected": true,
+          "id": "Battery",
+          "showNoctaliaPerformance": false,
+          "showPowerProfiles": true
+        },
+        {
+          "iconColor": "none",
+          "id": "KeepAwake",
+          "textColor": "none"
+        },
+        {
+          "hideWhenZero": false,
+          "hideWhenZeroUnread": false,
+          "iconColor": "none",
+          "id": "NotificationHistory",
+          "showUnreadBadge": true,
+          "unreadBadgeColor": "primary"
         }
       ]
     },
@@ -217,7 +239,7 @@
     "solidColor": "#1a1a2e",
     "automationEnabled": true,
     "wallpaperChangeMode": "random",
-    "randomIntervalSec": 3600,
+    "randomIntervalSec": 86400,
     "transitionDuration": 1500,
     "transitionType": "random",
     "skipStartupTransition": false,
@@ -272,18 +294,15 @@
     "shortcuts": {
       "left": [
         {
-          "id": "Network"
+          "id": "DarkMode"
         },
         {
-          "id": "Bluetooth"
+          "id": "NightLight"
         }
       ],
       "right": [
         {
-          "id": "Notifications"
-        },
-        {
-          "id": "PowerProfile"
+          "id": "WallpaperSelector"
         }
       ]
     },
@@ -415,7 +434,7 @@
   "notifications": {
     "enabled": true,
     "monitors": [],
-    "location": "top_right",
+    "location": "bottom_left",
     "overlayLayer": true,
     "backgroundOpacity": 1,
     "respectExpireTimeout": false,
@@ -442,7 +461,7 @@
   },
   "osd": {
     "enabled": true,
-    "location": "top_right",
+    "location": "bottom_left",
     "autoHideMs": 2000,
     "overlayLayer": true,
     "backgroundOpacity": 1,

@@ -24,14 +24,6 @@
       options = "--delete-older-than 14d";
     };
 
-    # Allow insecure electron (still required by an installed package)
-    nixpkgs.config.permittedInsecurePackages = [
-      "electron-39.8.10"
-    ];
-
-    # Disable the NixOS manual
-    documentation.nixos.enable = false;
-
     programs.direnv = {
       enable = true;
       silent = false;
