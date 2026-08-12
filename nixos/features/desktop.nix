@@ -6,6 +6,7 @@
       self.nixosModules.fonts
       self.nixosModules.audio
       self.nixosModules.niri
+      self.nixosModules.login
     ];
   };
 }

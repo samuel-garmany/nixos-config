@@ -1,5 +1,14 @@
 {self, ...}: {
-  flake.nixosModules.bitwarden = {pkgs, ...}: {
+  flake.nixosModules.bitwarden = {pkgs, ...}: let
+    autostart = pkgs.makeDesktopItem {
+      name = "bitwarden";
+      desktopName = "Bitwarden";
+      comment = "Bitwarden startup script";
+      exec = "${pkgs.bitwarden-desktop}/bin/bitwarden --autostart";
+      terminal = false;
+      startupNotify = false;
+    };
+  in {
     imports = [
       self.nixosModules.firefox
     ];
@@ -7,6 +16,8 @@
     environment.systemPackages = with pkgs; [
       bitwarden-desktop
     ];
+
+    environment.etc."xdg/autostart/bitwarden.desktop".source = "${autostart}/share/applications/bitwarden.desktop";
 
     programs.firefox.policies.ExtensionSettings = {
       # Allow and install specific extensions by their GUID
