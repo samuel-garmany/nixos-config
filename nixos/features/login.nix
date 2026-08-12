@@ -17,7 +17,21 @@
 
     services.gnome.gnome-keyring.enable = true;
 
-    security.soteria.enable = true;
+    systemd.user.services.polkit-mate-authentication-agent-1 = {
+      description = "PolicyKit Authentication Agent for the MATE Desktop";
+
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+
+      serviceConfig = {
+        ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+        Type = "simple";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
 
     security.pam.services.login.fprintAuth = false;
     security.pam.services.noctalia = {};
