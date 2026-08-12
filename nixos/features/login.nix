@@ -17,6 +17,8 @@
 
     services.gnome.gnome-keyring.enable = true;
 
+    security.soteria.enable = true;
+
     security.pam.services.login.fprintAuth = false;
     security.pam.services.noctalia = {};
     security.pam.services.passwd.enableGnomeKeyring = true;
