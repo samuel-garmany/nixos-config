@@ -1,15 +1,11 @@
 {self, ...}: {
-  flake.nixosModules.general = {
-    pkgs,
-    config,
-    ...
-  }: {
+  flake.nixosModules.general = {pkgs, ...}: {
     imports = [
       self.nixosModules.nix
     ];
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.${config.preferences.user.name} = {
+    users.users.${self.username} = {
       isNormalUser = true;
       description = self.fullName;
       extraGroups = [

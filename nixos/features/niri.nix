@@ -11,10 +11,11 @@
 
     services.greetd = {
       enable = true;
+      # Whether the greeter uses text-based user interfaces (For example, tuigreet).
+      useTextGreeter = true;
       settings = {
         default_session = {
-          command = "${config.programs.niri.package}/bin/niri-session";
-          user = config.preferences.user.name;
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${config.programs.niri.package}/bin/niri-session";
         };
       };
     };
@@ -36,5 +37,6 @@
 
     services.upower.enable = true;
     services.gnome.gnome-keyring.enable = true;
+    security.pam.services.login.fprintAuth = false;
   };
 }

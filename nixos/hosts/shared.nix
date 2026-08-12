@@ -1,7 +1,6 @@
 {self, ...}: {
   flake.nixosModules.shared = {...}: {
     imports = [
-      self.nixosModules.base
       self.nixosModules.general
 
       # system
@@ -45,6 +44,7 @@
       self.nixosModules.qalculate
       self.nixosModules.qgis
       self.nixosModules.orca-slicer
+      self.nixosModules.seahorse
       self.nixosModules.slack
       self.nixosModules.veracrypt
       self.nixosModules.vorta
