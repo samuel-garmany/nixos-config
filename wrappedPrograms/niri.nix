@@ -31,12 +31,12 @@
           xkb = {};
 
           # Enable numlock on startup, omitting this setting disables it.
-          numlock = null;
+          numlock = _: {};
         };
 
         touchpad = {
-          tap = null;
-          natural-scroll = null;
+          tap = _: {};
+          natural-scroll = _: {};
         };
       };
 
@@ -74,26 +74,15 @@
         focus-ring = {
           # How many logical pixels the ring extends out from the windows.
           width = 4;
-
-          # Color of the ring on the active monitor.
-          active-color = "#59c2ff";
-
-          # Color of the ring on inactive monitors.
-          inactive-color = "#3e4b59";
         };
 
         # You can also add a border. It's similar to the focus ring, but always visible.
         border = {
           # The settings are the same as for the focus ring.
           # If you enable the border, you probably want to disable the focus ring.
-          off = null;
+          off = _: {};
 
           width = 4;
-          active-color = "#ff8f40";
-          inactive-color = "#3e4b59";
-
-          # Color of the border around windows that request your attention.
-          urgent-color = "#f07178";
         };
 
         # You can enable drop shadows for windows.
@@ -105,9 +94,11 @@
           spread = 5;
 
           # Offset moves the shadow relative to the window.
-          offset._attrs = {
-            x = 0;
-            y = 5;
+          offset = _: {
+            props = {
+              x = 0;
+              y = 5;
+            };
           };
 
           color = "#0007";
@@ -122,7 +113,7 @@
       ];
 
       # Uncomment this line to ask the clients to omit their client-side decorations if possible.
-      # prefer-no-csd = null;
+      # prefer-no-csd = _: {};
 
       # You can change the path where screenshots are saved.
       # A ~ at the front will be expanded to the home directory.
@@ -136,7 +127,7 @@
       # Hot corners let you toggle the overview by putting your mouse at a
       # corner of a monitor.
       # https://niri-wm.github.io/niri/Configuration:-Gestures
-      gestures.hot-corners.off = null;
+      gestures.hot-corners.off = _: {};
 
       # Change the theme and size of the cursor as well as set the
       # XCURSOR_THEME and XCURSOR_SIZE environment variables.
@@ -181,7 +172,7 @@
 
         # Mod-Shift-/, which is usually the same as Mod-?,
         # shows a list of important hotkeys.
-        "Mod+Shift+Slash".show-hotkey-overlay = null;
+        "Mod+Shift+Slash".show-hotkey-overlay = _: {};
 
         # Suggested binds for running programs: terminal, app launcher, screen locker.
         "Mod+T".spawn = config.terminal;
@@ -191,123 +182,123 @@
         # Example volume keys mappings for PipeWire & WirePlumber.
         # The allow-when-locked=true property makes them work even when the session is locked.
         # "-l 1.0" limits the volume to 100%.
-        "XF86AudioRaiseVolume" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+        "XF86AudioRaiseVolume" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
         };
-        "XF86AudioLowerVolume" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+        "XF86AudioLowerVolume" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
         };
-        "XF86AudioMute" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "XF86AudioMute" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
-        "XF86AudioMicMute" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        "XF86AudioMicMute" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
         };
 
         # Example media keys mapping using playerctl.
         # This will work with any MPRIS-enabled media player.
-        "XF86AudioPlay" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "playerctl play-pause";
+        "XF86AudioPlay" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "playerctl play-pause";
         };
-        "XF86AudioPause" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "playerctl play-pause";
+        "XF86AudioPause" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "playerctl play-pause";
         };
-        "XF86AudioStop" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "playerctl stop";
+        "XF86AudioStop" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "playerctl stop";
         };
-        "XF86AudioPrev" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "playerctl previous";
+        "XF86AudioPrev" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "playerctl previous";
         };
-        "XF86AudioNext" = {
-          _attrs.allow-when-locked = true;
-          spawn-sh = "playerctl next";
+        "XF86AudioNext" = _: {
+          props.allow-when-locked = true;
+          content.spawn-sh = "playerctl next";
         };
 
         # Example brightness key mappings for brightnessctl.
-        "XF86MonBrightnessUp" = {
-          _attrs.allow-when-locked = true;
-          spawn = ["brightnessctl" "--class=backlight" "set" "+10%"];
+        "XF86MonBrightnessUp" = _: {
+          props.allow-when-locked = true;
+          content.spawn = ["brightnessctl" "--class=backlight" "set" "+10%"];
         };
-        "XF86MonBrightnessDown" = {
-          _attrs.allow-when-locked = true;
-          spawn = ["brightnessctl" "--class=backlight" "set" "10%-"];
+        "XF86MonBrightnessDown" = _: {
+          props.allow-when-locked = true;
+          content.spawn = ["brightnessctl" "--class=backlight" "set" "10%-"];
         };
 
         # Open/close the Overview: a zoomed-out view of workspaces and windows.
         # You can also move the mouse into the top-left hot corner,
         # or do a four-finger swipe up on a touchpad.
-        "Mod+O" = {
-          _attrs.repeat = false;
-          toggle-overview = null;
+        "Mod+O" = _: {
+          props.repeat = false;
+          content.toggle-overview = _: {};
         };
 
-        "Mod+Q" = {
-          _attrs.repeat = false;
-          close-window = null;
+        "Mod+Q" = _: {
+          props.repeat = false;
+          content.close-window = _: {};
         };
 
-        "Mod+Left".focus-column-left = null;
-        "Mod+Down".focus-window-down = null;
-        "Mod+Up".focus-window-up = null;
-        "Mod+Right".focus-column-right = null;
-        "Mod+H".focus-column-left = null;
-        "Mod+J".focus-window-down = null;
-        "Mod+K".focus-window-up = null;
-        "Mod+L".focus-column-right = null;
+        "Mod+Left".focus-column-left = _: {};
+        "Mod+Down".focus-window-down = _: {};
+        "Mod+Up".focus-window-up = _: {};
+        "Mod+Right".focus-column-right = _: {};
+        "Mod+H".focus-column-left = _: {};
+        "Mod+J".focus-window-down = _: {};
+        "Mod+K".focus-window-up = _: {};
+        "Mod+L".focus-column-right = _: {};
 
-        "Mod+Ctrl+Left".move-column-left = null;
-        "Mod+Ctrl+Down".move-window-down = null;
-        "Mod+Ctrl+Up".move-window-up = null;
-        "Mod+Ctrl+Right".move-column-right = null;
-        "Mod+Ctrl+H".move-column-left = null;
-        "Mod+Ctrl+J".move-window-down = null;
-        "Mod+Ctrl+K".move-window-up = null;
-        "Mod+Ctrl+L".move-column-right = null;
+        "Mod+Ctrl+Left".move-column-left = _: {};
+        "Mod+Ctrl+Down".move-window-down = _: {};
+        "Mod+Ctrl+Up".move-window-up = _: {};
+        "Mod+Ctrl+Right".move-column-right = _: {};
+        "Mod+Ctrl+H".move-column-left = _: {};
+        "Mod+Ctrl+J".move-window-down = _: {};
+        "Mod+Ctrl+K".move-window-up = _: {};
+        "Mod+Ctrl+L".move-column-right = _: {};
 
-        "Mod+Home".focus-column-first = null;
-        "Mod+End".focus-column-last = null;
-        "Mod+Ctrl+Home".move-column-to-first = null;
-        "Mod+Ctrl+End".move-column-to-last = null;
+        "Mod+Home".focus-column-first = _: {};
+        "Mod+End".focus-column-last = _: {};
+        "Mod+Ctrl+Home".move-column-to-first = _: {};
+        "Mod+Ctrl+End".move-column-to-last = _: {};
 
-        "Mod+Shift+Left".focus-monitor-left = null;
-        "Mod+Shift+Down".focus-monitor-down = null;
-        "Mod+Shift+Up".focus-monitor-up = null;
-        "Mod+Shift+Right".focus-monitor-right = null;
-        "Mod+Shift+H".focus-monitor-left = null;
-        "Mod+Shift+J".focus-monitor-down = null;
-        "Mod+Shift+K".focus-monitor-up = null;
-        "Mod+Shift+L".focus-monitor-right = null;
+        "Mod+Shift+Left".focus-monitor-left = _: {};
+        "Mod+Shift+Down".focus-monitor-down = _: {};
+        "Mod+Shift+Up".focus-monitor-up = _: {};
+        "Mod+Shift+Right".focus-monitor-right = _: {};
+        "Mod+Shift+H".focus-monitor-left = _: {};
+        "Mod+Shift+J".focus-monitor-down = _: {};
+        "Mod+Shift+K".focus-monitor-up = _: {};
+        "Mod+Shift+L".focus-monitor-right = _: {};
 
-        "Mod+Shift+Ctrl+Left".move-column-to-monitor-left = null;
-        "Mod+Shift+Ctrl+Down".move-column-to-monitor-down = null;
-        "Mod+Shift+Ctrl+Up".move-column-to-monitor-up = null;
-        "Mod+Shift+Ctrl+Right".move-column-to-monitor-right = null;
-        "Mod+Shift+Ctrl+H".move-column-to-monitor-left = null;
-        "Mod+Shift+Ctrl+J".move-column-to-monitor-down = null;
-        "Mod+Shift+Ctrl+K".move-column-to-monitor-up = null;
-        "Mod+Shift+Ctrl+L".move-column-to-monitor-right = null;
+        "Mod+Shift+Ctrl+Left".move-column-to-monitor-left = _: {};
+        "Mod+Shift+Ctrl+Down".move-column-to-monitor-down = _: {};
+        "Mod+Shift+Ctrl+Up".move-column-to-monitor-up = _: {};
+        "Mod+Shift+Ctrl+Right".move-column-to-monitor-right = _: {};
+        "Mod+Shift+Ctrl+H".move-column-to-monitor-left = _: {};
+        "Mod+Shift+Ctrl+J".move-column-to-monitor-down = _: {};
+        "Mod+Shift+Ctrl+K".move-column-to-monitor-up = _: {};
+        "Mod+Shift+Ctrl+L".move-column-to-monitor-right = _: {};
 
-        "Mod+Page_Down".focus-workspace-down = null;
-        "Mod+Page_Up".focus-workspace-up = null;
-        "Mod+U".focus-workspace-down = null;
-        "Mod+I".focus-workspace-up = null;
-        "Mod+Ctrl+Page_Down".move-column-to-workspace-down = null;
-        "Mod+Ctrl+Page_Up".move-column-to-workspace-up = null;
-        "Mod+Ctrl+U".move-column-to-workspace-down = null;
-        "Mod+Ctrl+I".move-column-to-workspace-up = null;
+        "Mod+Page_Down".focus-workspace-down = _: {};
+        "Mod+Page_Up".focus-workspace-up = _: {};
+        "Mod+U".focus-workspace-down = _: {};
+        "Mod+I".focus-workspace-up = _: {};
+        "Mod+Ctrl+Page_Down".move-column-to-workspace-down = _: {};
+        "Mod+Ctrl+Page_Up".move-column-to-workspace-up = _: {};
+        "Mod+Ctrl+U".move-column-to-workspace-down = _: {};
+        "Mod+Ctrl+I".move-column-to-workspace-up = _: {};
 
-        "Mod+Shift+Page_Down".move-workspace-down = null;
-        "Mod+Shift+Page_Up".move-workspace-up = null;
-        "Mod+Shift+U".move-workspace-down = null;
-        "Mod+Shift+I".move-workspace-up = null;
+        "Mod+Shift+Page_Down".move-workspace-down = _: {};
+        "Mod+Shift+Page_Up".move-workspace-up = _: {};
+        "Mod+Shift+U".move-workspace-down = _: {};
+        "Mod+Shift+I".move-workspace-up = _: {};
 
         # You can bind mouse wheel scroll ticks using the following syntax.
         # These binds will change direction based on the natural-scroll setting.
@@ -315,34 +306,34 @@
         # To avoid scrolling through workspaces really fast, you can use
         # the cooldown-ms property. The bind will be rate-limited to this value.
         # You can set a cooldown on any bind, but it's most useful for the wheel.
-        "Mod+WheelScrollDown" = {
-          _attrs.cooldown-ms = 150;
-          focus-workspace-down = null;
+        "Mod+WheelScrollDown" = _: {
+          props.cooldown-ms = 150;
+          content.focus-workspace-down = _: {};
         };
-        "Mod+WheelScrollUp" = {
-          _attrs.cooldown-ms = 150;
-          focus-workspace-up = null;
+        "Mod+WheelScrollUp" = _: {
+          props.cooldown-ms = 150;
+          content.focus-workspace-up = _: {};
         };
-        "Mod+Ctrl+WheelScrollDown" = {
-          _attrs.cooldown-ms = 150;
-          move-column-to-workspace-down = null;
+        "Mod+Ctrl+WheelScrollDown" = _: {
+          props.cooldown-ms = 150;
+          content.move-column-to-workspace-down = _: {};
         };
-        "Mod+Ctrl+WheelScrollUp" = {
-          _attrs.cooldown-ms = 150;
-          move-column-to-workspace-up = null;
+        "Mod+Ctrl+WheelScrollUp" = _: {
+          props.cooldown-ms = 150;
+          content.move-column-to-workspace-up = _: {};
         };
 
-        "Mod+WheelScrollRight".focus-column-right = null;
-        "Mod+WheelScrollLeft".focus-column-left = null;
-        "Mod+Ctrl+WheelScrollRight".move-column-right = null;
-        "Mod+Ctrl+WheelScrollLeft".move-column-left = null;
+        "Mod+WheelScrollRight".focus-column-right = _: {};
+        "Mod+WheelScrollLeft".focus-column-left = _: {};
+        "Mod+Ctrl+WheelScrollRight".move-column-right = _: {};
+        "Mod+Ctrl+WheelScrollLeft".move-column-left = _: {};
 
         # Usually scrolling up and down with Shift in applications results in
         # horizontal scrolling; these binds replicate that.
-        "Mod+Shift+WheelScrollDown".focus-column-right = null;
-        "Mod+Shift+WheelScrollUp".focus-column-left = null;
-        "Mod+Ctrl+Shift+WheelScrollDown".move-column-right = null;
-        "Mod+Ctrl+Shift+WheelScrollUp".move-column-left = null;
+        "Mod+Shift+WheelScrollDown".focus-column-right = _: {};
+        "Mod+Shift+WheelScrollUp".focus-column-left = _: {};
+        "Mod+Ctrl+Shift+WheelScrollDown".move-column-right = _: {};
+        "Mod+Ctrl+Shift+WheelScrollUp".move-column-left = _: {};
 
         # You can refer to workspaces by index. However, keep in mind that
         # niri is a dynamic workspace system, so these commands are kind of
@@ -371,36 +362,36 @@
         # The following binds move the focused window in and out of a column.
         # If the window is alone, they will consume it into the nearby column to the side.
         # If the window is already in a column, they will expel it out.
-        "Mod+BracketLeft".consume-or-expel-window-left = null;
-        "Mod+BracketRight".consume-or-expel-window-right = null;
+        "Mod+BracketLeft".consume-or-expel-window-left = _: {};
+        "Mod+BracketRight".consume-or-expel-window-right = _: {};
 
         # Consume one window from the right to the bottom of the focused column.
-        "Mod+Comma".consume-window-into-column = null;
+        "Mod+Comma".consume-window-into-column = _: {};
         # Expel the bottom window from the focused column to the right.
-        "Mod+Period".expel-window-from-column = null;
+        "Mod+Period".expel-window-from-column = _: {};
 
         # Cycle through widths set in preset-column-widths.
-        "Mod+R".switch-preset-column-width = null;
+        "Mod+R".switch-preset-column-width = _: {};
         # Cycling through the presets in reverse order is also possible.
-        "Mod+Shift+R".switch-preset-column-width-back = null;
+        "Mod+Shift+R".switch-preset-column-width-back = _: {};
 
-        "Mod+Ctrl+Shift+R".switch-preset-window-height = null;
-        "Mod+Ctrl+R".reset-window-height = null;
+        "Mod+Ctrl+Shift+R".switch-preset-window-height = _: {};
+        "Mod+Ctrl+R".reset-window-height = _: {};
 
-        "Mod+F".maximize-column = null;
-        "Mod+Shift+F".fullscreen-window = null;
+        "Mod+F".maximize-column = _: {};
+        "Mod+Shift+F".fullscreen-window = _: {};
 
         # While maximize-column leaves gaps and borders around the window,
         # maximize-window-to-edges doesn't: the window expands to the edges of the screen.
-        "Mod+M".maximize-window-to-edges = null;
+        "Mod+M".maximize-window-to-edges = _: {};
 
         # Expand the focused column to space not taken up by other fully visible columns.
-        "Mod+Ctrl+F".expand-column-to-available-width = null;
+        "Mod+Ctrl+F".expand-column-to-available-width = _: {};
 
-        "Mod+C".center-column = null;
+        "Mod+C".center-column = _: {};
 
         # Center all fully visible columns on screen.
-        "Mod+Ctrl+C".center-visible-columns = null;
+        "Mod+Ctrl+C".center-visible-columns = _: {};
 
         # Finer width adjustments.
         "Mod+Minus".set-column-width = "-10%";
@@ -411,36 +402,40 @@
         "Mod+Shift+Equal".set-window-height = "+10%";
 
         # Move the focused window between the floating and the tiling layout.
-        "Mod+V".toggle-window-floating = null;
-        "Mod+Shift+V".switch-focus-between-floating-and-tiling = null;
+        "Mod+V".toggle-window-floating = _: {};
+        "Mod+Shift+V".switch-focus-between-floating-and-tiling = _: {};
 
         # Toggle tabbed column display mode.
         # Windows in this column will appear as vertical tabs,
         # rather than stacked on top of each other.
-        "Mod+W".toggle-column-tabbed-display = null;
+        "Mod+W".toggle-column-tabbed-display = _: {};
 
-        "Print".screenshot = null;
-        "Ctrl+Print".screenshot-screen = null;
-        "Alt+Print".screenshot-window = null;
+        "Print".screenshot = _: {};
+        "Ctrl+Print".screenshot-screen = _: {};
+        "Alt+Print".screenshot-window = _: {};
 
         # Applications such as remote-desktop clients and software KVM switches may
         # request that niri stops processing the keyboard shortcuts defined here
         # so they may, for example, forward the key presses as-is to a remote machine.
         # It's a good idea to bind an escape hatch to toggle the inhibitor,
         # so a buggy application can't hold your session hostage.
-        "Mod+Escape" = {
-          _attrs.allow-inhibiting = false;
-          toggle-keyboard-shortcuts-inhibit = null;
+        "Mod+Escape" = _: {
+          props.allow-inhibiting = false;
+          content.toggle-keyboard-shortcuts-inhibit = _: {};
         };
 
         # The quit action will show a confirmation dialog to avoid accidental exits.
-        "Mod+Shift+E".quit = null;
-        "Ctrl+Alt+Delete".quit = null;
+        "Mod+Shift+E".quit = _: {};
+        "Ctrl+Alt+Delete".quit = _: {};
 
         # Powers off the monitors. To turn them back on, do any input like
         # moving the mouse or pressing any other key.
-        "Mod+Shift+P".power-off-monitors = null;
+        "Mod+Shift+P".power-off-monitors = _: {};
       };
+
+      extraConfig = ''
+        include optional=true "~/.config/niri/noctalia.kdl"
+      '';
     };
   };
 
