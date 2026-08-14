@@ -36,13 +36,14 @@
         Preferences = {
           # Vertical Tabs
           "sidebar.verticalTabs" = true;
+          "sidebar.visibility" = "expand-on-hover";
 
           # Restore session
           "browser.startup.page" = 3;
 
           # Search Suggestions
           "browser.urlbar.suggest.searches" = false;
-          "browser.urlbar.suggest.quicksuggest.nonlinear" = false;
+          "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
           "browser.urlbar.suggest.quicksuggest.sponsored" = false;
 
           # Sponsored Content
@@ -52,13 +53,9 @@
           # Enhanced Tracking Protection
           "browser.contentblocking.category" = "strict";
 
-          # Cookies & Sessions
-          "network.cookie.lifetimePolicy" = 0;
-
           # Telemetry
           "datareporting.policy.dataSubmissionEnabled" = false;
           "browser.discovery.enabled" = false;
-          "browser.ping-centre.telemetry" = false;
 
           # Website Advertising Preferences
           "dom.private-attribution.submission.enabled" = false;
