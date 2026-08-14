@@ -1,9 +1,5 @@
 {
-  flake.nixosModules.gtk = {
-    pkgs,
-    lib,
-    ...
-  }: let
+  flake.nixosModules.gtk = {pkgs, ...}: let
     icon-theme-name = "Adwaita";
 
     gtksettings = ''
@@ -18,15 +14,12 @@
     };
 
     # noctalia's gtk template sets gtk-theme and color-scheme here.
-    programs.dconf = {
-      enable = lib.mkDefault true;
-      profiles.user.databases = [
-        {
-          lockAll = false;
-          settings."org/gnome/desktop/interface".icon-theme = icon-theme-name;
-        }
-      ];
-    };
+    programs.dconf.profiles.user.databases = [
+      {
+        lockAll = false;
+        settings."org/gnome/desktop/interface".icon-theme = icon-theme-name;
+      }
+    ];
 
     environment.systemPackages = [
       pkgs.adwaita-icon-theme

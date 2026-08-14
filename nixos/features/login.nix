@@ -15,8 +15,6 @@
       };
     };
 
-    services.gnome.gnome-keyring.enable = true;
-
     systemd.user.services.polkit-mate-authentication-agent-1 = {
       description = "PolicyKit Authentication Agent for the MATE Desktop";
 
@@ -25,7 +23,7 @@
       after = ["graphical-session.target"];
 
       serviceConfig = {
-        ExecStart = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+        ExecStart = "${pkgs.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
         Type = "simple";
         Restart = "on-failure";
         RestartSec = 1;
@@ -36,5 +34,12 @@
     security.pam.services.login.fprintAuth = false;
     security.pam.services.noctalia = {};
     security.pam.services.passwd.enableGnomeKeyring = true;
+
+    # "If enabled, pam_gnome_keyring will attempt to automatically unlock the
+    # user's default Gnome keyring upon login. If the user login password does
+    # not match their keyring password, Gnome Keyring will prompt separately
+    # after login."
+    # security.pam.services.<name>.enableGnomeKeyring
+    security.pam.services.greetd.enableGnomeKeyring = true;
   };
 }

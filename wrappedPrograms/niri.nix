@@ -52,14 +52,6 @@
         # Set gaps around windows in logical pixels.
         gaps = 16;
 
-        # When to center a column when changing focus, options are:
-        # - "never", default behavior, focusing an off-screen column will keep at the left
-        #   or right edge of the screen.
-        # - "always", the focused column will always be centered.
-        # - "on-overflow", focusing a column will center it if it doesn't fit
-        #   together with the previously focused column.
-        center-focused-column = "never";
-
         # You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
         preset-column-widths = [
           {proportion = 0.33333;}
@@ -107,10 +99,10 @@
 
       xwayland-satellite.path = lib.getExe config.pkgs.xwayland-satellite;
 
-      # Add lines like this to spawn processes at startup.
-      spawn-at-startup = [
-        noctalia
-      ];
+      hotkey-overlay = {
+        # Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
+        skip-at-startup = _: {};
+      };
 
       # Uncomment this line to ask the clients to omit their client-side decorations if possible.
       # prefer-no-csd = _: {};
@@ -127,7 +119,7 @@
       # Hot corners let you toggle the overview by putting your mouse at a
       # corner of a monitor.
       # https://niri-wm.github.io/niri/Configuration:-Gestures
-      gestures.hot-corners.off = _: {};
+      gestures.hot-corners.top-left = _: {};
 
       # Change the theme and size of the cursor as well as set the
       # XCURSOR_THEME and XCURSOR_SIZE environment variables.
@@ -431,6 +423,15 @@
         # Powers off the monitors. To turn them back on, do any input like
         # moving the mouse or pressing any other key.
         "Mod+Shift+P".power-off-monitors = _: {};
+
+        # "For presentations it can be useful to mirror an output to another.
+        # Currently, niri doesn't have built-in output mirroring, but you can
+        # use a third-party tool wl-mirror that mirrors an output to a window."
+        # https://niri-wm.github.io/niri/Screencasting.html
+        "Mod+P" = _: {
+          props.repeat = false;
+          content.spawn-sh = "wl-mirror $(niri msg --json focused-output | jq -r .name)";
+        };
       };
 
       extraConfig = ''

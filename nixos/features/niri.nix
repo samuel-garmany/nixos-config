@@ -5,9 +5,6 @@
     programs.niri.enable = true;
     programs.niri.package = selfpkgs.niri;
 
-    # Allows niri to inherit the full PATH set up by niri-session
-    systemd.user.services.niri.enableDefaultPath = false;
-
     environment.systemPackages = [
       selfpkgs.terminal
       selfpkgs.noctalia-shell
@@ -15,10 +12,28 @@
       pkgs.brightnessctl
       pkgs.playerctl
       pkgs.wl-clipboard
+      pkgs.cliphist
+      pkgs.pwvucontrol
+      pkgs.wl-mirror
+      pkgs.jq
     ];
 
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    # Restarted on failure so the lock screen, which idle.nix reaches over IPC,
+    # cannot go missing for the rest of the session.
+    systemd.user.services.noctalia-shell = {
+      wantedBy = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+
+      # "Whether to append a minimal default PATH environment variable to the
+      # service, containing common system utilities."
+      # systemd.user.services.<name>.enableDefaultPath
+      enableDefaultPath = false;
+
+      serviceConfig.Restart = "always";
+      serviceConfig.RestartSec = 2;
+      serviceConfig.ExecStart = "${selfpkgs.noctalia-shell}/bin/noctalia-shell";
+    };
 
     services.upower.enable = true;
   };
