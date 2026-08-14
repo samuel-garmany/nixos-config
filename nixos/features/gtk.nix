@@ -8,6 +8,9 @@
       gtk-cursor-theme-name = ${icon-theme-name}
     '';
   in {
+    # nixos/modules/services/desktop-managers/pantheon.nix:
+    #   "GTK4 will try both $XDG_CONFIG_DIRS/gtk-4.0 and ${gtk4}/etc/gtk-4.0,
+    #    but not /etc/gtk-4.0."
     environment.etc = {
       "xdg/gtk-3.0/settings.ini".text = gtksettings;
       "xdg/gtk-4.0/settings.ini".text = gtksettings;
