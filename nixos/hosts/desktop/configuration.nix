@@ -11,7 +11,7 @@
 
   flake.nixosModules.hostDesktop = {...}: {
     imports = [
-      self.nixosModules.shared
+      self.nixosModules.workstation
 
       self.nixosModules.gaming
 

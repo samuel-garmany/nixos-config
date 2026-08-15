@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   flake.nixosModules.nextcloudServer = {
     config,
     lib,
@@ -7,6 +7,8 @@
   }: let
     # tailscale serve proxies / to this port.
     port = 8080;
+
+    hostName = "${config.networking.hostName}.${self.tailnet}";
   in {
     sops.secrets.nextcloud-adminpass = {};
     sops.secrets.nextcloud-secrets = {};
@@ -15,7 +17,7 @@
       enable = true;
       package = pkgs.nextcloud34;
 
-      hostName = "server.tail5c3838.ts.net";
+      inherit hostName;
       datadir = "/mnt/data/nextcloud";
       https = true;
 
@@ -33,7 +35,7 @@
       settings = {
         instanceid = "ocpnbedx91cj";
         overwriteprotocol = "https";
-        "overwrite.cli.url" = "https://server.tail5c3838.ts.net/";
+        "overwrite.cli.url" = "https://${hostName}/";
         trusted_proxies = ["127.0.0.1" "::1"];
       };
 
@@ -47,6 +49,12 @@
     # The default follows system.stateVersion and lands on 17; the database was
     # dumped from 18.
     services.postgresql.package = pkgs.postgresql_18;
+
+    services.postgresqlBackup = {
+      enable = true;
+      # Path of directory where the PostgreSQL database dumps will be placed.
+      location = "/mnt/data/backups/postgresql";
+    };
 
     # Cache and lock store only. An empty list writes save "", disabling
     # snapshots.

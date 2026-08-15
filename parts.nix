@@ -1,30 +1,15 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.wrapper-modules.flakeModules.wrappers
   ];
 
-  options = {
-    flake = inputs.flake-parts.lib.mkSubmoduleOptions {
-      wrappersModules = inputs.nixpkgs.lib.mkOption {
-        default = {};
-      };
-
-      username = inputs.nixpkgs.lib.mkOption {
-        default = "";
-      };
-
-      fullName = inputs.nixpkgs.lib.mkOption {
-        default = "";
-      };
-
-      email = inputs.nixpkgs.lib.mkOption {
-        default = "";
-      };
-
-      authorizedKeys = inputs.nixpkgs.lib.mkOption {
-        default = [];
-      };
-    };
+  options.flake.wrappersModules = lib.mkOption {
+    type = lib.types.lazyAttrsOf lib.types.deferredModule;
+    default = {};
   };
 
   config = {
@@ -33,11 +18,18 @@
       "aarch64-linux"
     ];
 
-    perSystem = {system, ...}: {
+    perSystem = {
+      pkgs,
+      system,
+      ...
+    }: {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
+
+      # A package used by `nix fmt`.
+      formatter = pkgs.alejandra;
     };
   };
 }

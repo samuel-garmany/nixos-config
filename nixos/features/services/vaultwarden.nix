@@ -1,8 +1,11 @@
-{
+{self, ...}: {
   flake.nixosModules.vaultwarden = {...}: {
     services.vaultwarden = {
       enable = true;
-      domain = "vault.garmany.me";
+      domain = self.vaultDomain;
+
+      # The directory under which vaultwarden will backup its persistent data.
+      backupDir = "/mnt/data/backups/vaultwarden";
 
       config = {
         # Controls if new users can register

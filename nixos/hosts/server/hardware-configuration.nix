@@ -66,6 +66,8 @@
     # README. postgresql is absent because its module already sets it.
     systemd.services = {
       vaultwarden.unitConfig.RequiresMountsFor = "/var/lib/vaultwarden";
+      backup-vaultwarden.unitConfig.RequiresMountsFor = "/mnt/data";
+      postgresqlBackup.unitConfig.RequiresMountsFor = "/mnt/data";
       calibre-web.unitConfig.RequiresMountsFor = "/mnt/data";
       nextcloud-cron.unitConfig.RequiresMountsFor = "/mnt/data";
       nextcloud-setup.unitConfig.RequiresMountsFor = "/mnt/data";

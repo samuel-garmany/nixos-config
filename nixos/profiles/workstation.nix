@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.shared = {...}: {
+  flake.nixosModules.workstation = {...}: {
     imports = [
       self.nixosModules.general
 
@@ -12,10 +12,15 @@
       self.nixosModules.security
       self.nixosModules.tailscale
       self.nixosModules.yubikey
-      self.nixosModules.power-profiles-daemon
+      self.nixosModules.powerProfilesDaemon
 
       # desktop
-      self.nixosModules.desktop
+      self.nixosModules.gtk
+      self.nixosModules.qt
+      self.nixosModules.fonts
+      self.nixosModules.audio
+      self.nixosModules.niri
+      self.nixosModules.login
       self.nixosModules.idle
       self.nixosModules.printing
 

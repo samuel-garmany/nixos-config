@@ -11,7 +11,7 @@
 
   flake.nixosModules.hostLaptop = {...}: {
     imports = [
-      self.nixosModules.shared
+      self.nixosModules.workstation
 
       inputs.nixos-hardware.nixosModules.framework-13-7040-amd
     ];

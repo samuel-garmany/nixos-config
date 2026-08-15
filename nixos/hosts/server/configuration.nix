@@ -19,8 +19,8 @@
       self.nixosModules.tailscale
 
       # services
-      self.nixosModules.adguardhome
-      self.nixosModules.calibre-web
+      self.nixosModules.adguardHome
+      self.nixosModules.calibreWeb
       self.nixosModules.cloudflared
       self.nixosModules.nextcloudServer
       self.nixosModules.vaultwarden
@@ -39,6 +39,9 @@
     ];
 
     networking.hostName = "server"; # Define your hostname.
+
+    # Default sops file used for all secrets.
+    sops.defaultSopsFile = ../../../secrets/server.yaml;
 
     time.timeZone = "America/Denver";
     i18n.defaultLocale = "en_US.UTF-8";

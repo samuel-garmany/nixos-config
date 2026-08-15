@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.calibre-web = {...}: {
+  flake.nixosModules.calibreWeb = {...}: {
     services.calibre-web = {
       enable = true;
 

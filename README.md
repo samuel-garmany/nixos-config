@@ -21,10 +21,13 @@ The server is aarch64 and builds on the desktop through
 `system.autoUpgrade`, so pushing to `main` deploys it.
 
 ```
-nixos/base/        values the flake itself reads: username, SSH keys
-nixos/features/    one module per concern
+nixos/base/        values the flake itself reads: identity, SSH keys, domains
+nixos/features/    one module per concern: system, desktop, apps, services
+nixos/profiles/    the feature list for a class of machine
 nixos/hosts/       configuration.nix + hardware-configuration.nix per machine
-wrappedPrograms/   programs whose config is baked into the package, not $HOME
+wrappedPrograms/   programs whose config is baked into the package, not $HOME.
+                   A program that needs a wrapper is configured here, and its
+                   nixosModule lives here too.
 secrets/           sops-encrypted
 ```
 
