@@ -55,12 +55,18 @@
       }
     ];
 
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      settings = {
+        # Specifies whether password authentication is allowed.
+        PasswordAuthentication = false;
+        # Specifies whether keyboard-interactive authentication is allowed.
+        KbdInteractiveAuthentication = false;
+      };
+    };
 
     users.users.root.openssh.authorizedKeys.keys = self.authorizedKeys;
     users.users.${self.username}.openssh.authorizedKeys.keys = self.authorizedKeys;
-
-    services.smartd.enable = true;
 
     system.autoUpgrade = {
       enable = true;

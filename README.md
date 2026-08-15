@@ -30,6 +30,19 @@ secrets/           sops-encrypted
 
 The rest of this file is the part that is not declarative.
 
+## tailscale serve
+
+Kept in tailscaled's state, not in the flake.
+
+```
+tailscale serve --bg --https=443  8080   # nextcloud
+tailscale serve --bg --https=8443 3000   # adguard home
+tailscale serve --bg --https=8444 8081   # vaultwarden
+tailscale serve --bg --https=8445 8083   # calibre-web
+
+tailscale serve status
+```
+
 ## TPM
 
 ```
