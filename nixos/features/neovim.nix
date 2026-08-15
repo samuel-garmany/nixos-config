@@ -6,6 +6,11 @@
 
     programs.nvf = {
       enable = true;
+
+      # Whether to set `nvf` as the default editor.
+      # This will set the `EDITOR` environment variable as `nvim` if set to true.
+      defaultEditor = true;
+
       settings = {
         vim = {
           viAlias = true;

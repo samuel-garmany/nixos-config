@@ -6,15 +6,19 @@
       anydesk
       arduino-ide
       audacity
+      baobab
       blanket
       freecad
       file-roller
       freetube
       gimp
+      gnome-disk-utility
+      gnome-text-editor
       gocryptfs
       inkscape
       loupe
       mpv
+      networkmanagerapplet
       orca-slicer
       qalculate-gtk
       qgis

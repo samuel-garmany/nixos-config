@@ -7,12 +7,6 @@
         DisableTelemetry = true;
 
         Preferences = {
-          # Allow Thunderbird to send technical/interaction data (Telemetry)
-          "datareporting.healthreport.uploadEnabled" = false;
-          "toolkit.telemetry.enabled" = false;
-          "toolkit.telemetry.archive.enabled" = false;
-          "browser.ping-centre.telemetry" = false;
-
           # Remember websites and links I've visited
           # Setting this to false disables history tracking
           "places.history.enabled" = false;

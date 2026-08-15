@@ -17,11 +17,7 @@
       # If you only supply `settings`, and do not choose somewhere for
       # `outOfStoreConfig` then it will only generate and set
       # `NOCTALIA_SETTINGS_FILE`
-      #
-      # Regenerate this file from the running shell. `dump-noctalia-shell`
-      # prints the same state as nix code instead.
-      #   noctalia-shell ipc call state all | jq .settings > noctalia-settings.json
-      settings = builtins.fromJSON (builtins.readFile ./noctalia-settings.json);
+      settings = builtins.fromJSON (builtins.readFile ./settings.json);
 
       env.NOCTALIA_PAM_SERVICE = "noctalia";
     };

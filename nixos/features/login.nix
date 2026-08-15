@@ -15,6 +15,8 @@
       };
     };
 
+    # Switch to soteria (security.soteria.enable) once it does fingerprint auth
+    # https://github.com/ImVaskel/soteria
     systemd.user.services.polkit-mate-authentication-agent-1 = {
       description = "PolicyKit Authentication Agent for the MATE Desktop";
 

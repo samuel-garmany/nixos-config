@@ -16,7 +16,19 @@
       pkgs.pwvucontrol
       pkgs.wl-mirror
       pkgs.jq
+      pkgs.xdg-terminal-exec
     ];
+
+    # Terminal=true entries go to the first known_terminals hit on PATH, which
+    # alacritty is not in and xdg-terminal-exec heads.
+    # gio/gdesktopappinfo.c, prepend_terminal_to_vector
+    #
+    # Preferred terminals are configured by listing them in config files named
+    # xdg-terminals.list placed in XDG Config hierarchy.
+    # xdg-terminal-exec(1)
+    environment.etc."xdg/xdg-terminals.list".text = ''
+      Alacritty.desktop
+    '';
 
     # Restarted on failure so the lock screen, which idle.nix reaches over IPC,
     # cannot go missing for the rest of the session.
