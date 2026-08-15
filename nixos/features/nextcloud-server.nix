@@ -4,7 +4,10 @@
     lib,
     pkgs,
     ...
-  }: {
+  }: let
+    # tailscale serve proxies / to this port.
+    port = 8080;
+  in {
     sops.secrets.nextcloud-adminpass = {};
     sops.secrets.nextcloud-secrets = {};
 
@@ -12,7 +15,7 @@
       enable = true;
       package = pkgs.nextcloud34;
 
-      hostName = "raspberrypi.tail5c3838.ts.net";
+      hostName = "server.tail5c3838.ts.net";
       datadir = "/mnt/data/nextcloud";
       https = true;
 
@@ -30,7 +33,7 @@
       settings = {
         instanceid = "ocpnbedx91cj";
         overwriteprotocol = "https";
-        "overwrite.cli.url" = "https://raspberrypi.tail5c3838.ts.net/";
+        "overwrite.cli.url" = "https://server.tail5c3838.ts.net/";
         trusted_proxies = ["127.0.0.1" "::1"];
       };
 
@@ -49,11 +52,10 @@
     # snapshots.
     services.redis.servers.nextcloud.save = [];
 
-    # tailscale serve proxies / to this port.
     services.nginx.virtualHosts.${config.services.nextcloud.hostName}.listen = [
       {
         addr = "127.0.0.1";
-        port = 11000;
+        inherit port;
       }
     ];
 
@@ -61,6 +63,6 @@
     # is a trusted proxy over the public hostname. notify_push:setup keeps that
     # hostname, since it is what clients connect to.
     systemd.services.nextcloud-notify_push.environment.NEXTCLOUD_URL =
-      lib.mkForce "http://127.0.0.1:11000";
+      lib.mkForce "http://127.0.0.1:${toString port}";
   };
 }

@@ -13,7 +13,7 @@ and a host is a list of the ones it wants.
 
 ```
 nixos-rebuild switch --flake .#<hostname>
-nixos-rebuild switch --flake .#server --target-host root@raspberrypi.tail5c3838.ts.net
+nixos-rebuild switch --flake .#server --target-host root@server.tail5c3838.ts.net
 ```
 
 The server is aarch64 and builds on the desktop through
