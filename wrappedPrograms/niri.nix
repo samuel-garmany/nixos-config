@@ -424,9 +424,9 @@
         # moving the mouse or pressing any other key.
         "Mod+Shift+P".power-off-monitors = _: {};
 
-        # "For presentations it can be useful to mirror an output to another.
+        # For presentations it can be useful to mirror an output to another.
         # Currently, niri doesn't have built-in output mirroring, but you can
-        # use a third-party tool wl-mirror that mirrors an output to a window."
+        # use a third-party tool wl-mirror that mirrors an output to a window.
         # https://niri-wm.github.io/niri/Screencasting.html
         "Mod+P" = _: {
           props.repeat = false;

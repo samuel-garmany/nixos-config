@@ -4,7 +4,7 @@
   ...
 }: {
   perSystem = {pkgs, ...}: let
-    # "This commands allows one to include other configuration files."
+    # This commands allows one to include other configuration files.
     # zathurarc(5)
     configDir = pkgs.runCommand "zathura-config-dir" {} ''
       mkdir -p $out

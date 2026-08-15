@@ -52,6 +52,12 @@ GNOME Keyring prompts separately after login.
 rm ~/.local/share/keyrings/login.keyring   # then log in again
 ```
 
+## Polkit agent
+
+mate-polkit is the agent because both machines have fingerprint readers. Switch
+to `security.soteria.enable` once soteria does fingerprint auth:
+https://github.com/ImVaskel/soteria
+
 ## Noctalia
 
 Settings come from the store; the GUI only changes the running session.

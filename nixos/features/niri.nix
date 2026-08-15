@@ -37,8 +37,8 @@
       partOf = ["graphical-session.target"];
       after = ["graphical-session.target"];
 
-      # "Whether to append a minimal default PATH environment variable to the
-      # service, containing common system utilities."
+      # Whether to append a minimal default PATH environment variable to the
+      # service, containing common system utilities.
       # systemd.user.services.<name>.enableDefaultPath
       enableDefaultPath = false;
 

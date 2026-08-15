@@ -4,8 +4,8 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    # "Recursively import Nix modules from a directory, with a simple,
-    # extensible API." "By default, paths having `/_` are ignored."
+    # Recursively import Nix modules from a directory, with a simple,
+    # extensible API. By default, paths having `/_` are ignored.
     # https://github.com/denful/import-tree
     import-tree.url = "github:denful/import-tree";
 
