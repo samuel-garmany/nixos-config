@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.nextcloud = {pkgs, ...}: let
+  flake.nixosModules.nextcloudClient = {pkgs, ...}: let
     autostart = pkgs.makeDesktopItem {
       name = "Nextcloud";
       desktopName = "Nextcloud";

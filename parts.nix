@@ -20,12 +20,17 @@
       email = inputs.nixpkgs.lib.mkOption {
         default = "";
       };
+
+      authorizedKeys = inputs.nixpkgs.lib.mkOption {
+        default = [];
+      };
     };
   };
 
   config = {
     systems = [
       "x86_64-linux"
+      "aarch64-linux"
     ];
 
     perSystem = {system, ...}: {

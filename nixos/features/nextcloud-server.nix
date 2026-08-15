@@ -1,0 +1,66 @@
+{
+  flake.nixosModules.nextcloudServer = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
+    sops.secrets.nextcloud-adminpass = {};
+    sops.secrets.nextcloud-secrets = {};
+
+    services.nextcloud = {
+      enable = true;
+      package = pkgs.nextcloud34;
+
+      hostName = "raspberrypi.tail5c3838.ts.net";
+      datadir = "/mnt/data/nextcloud";
+      https = true;
+
+      configureRedis = true;
+      database.createLocally = true;
+
+      config = {
+        dbtype = "pgsql";
+        adminpassFile = config.sops.secrets.nextcloud-adminpass.path;
+      };
+
+      # secret and passwordsalt, carried over from the previous instance.
+      secretFile = config.sops.secrets.nextcloud-secrets.path;
+
+      settings = {
+        instanceid = "ocpnbedx91cj";
+        overwriteprotocol = "https";
+        "overwrite.cli.url" = "https://raspberrypi.tail5c3838.ts.net/";
+        trusted_proxies = ["127.0.0.1" "::1"];
+      };
+
+      extraApps = {
+        inherit (pkgs.nextcloud34Packages.apps) calendar contacts tasks deck;
+      };
+
+      notify_push.enable = true;
+    };
+
+    # The default follows system.stateVersion and lands on 17; the database was
+    # dumped from 18.
+    services.postgresql.package = pkgs.postgresql_18;
+
+    # Cache and lock store only. An empty list writes save "", disabling
+    # snapshots.
+    services.redis.servers.nextcloud.save = [];
+
+    # tailscale serve proxies / to this port.
+    services.nginx.virtualHosts.${config.services.nextcloud.hostName}.listen = [
+      {
+        addr = "127.0.0.1";
+        port = 11000;
+      }
+    ];
+
+    # tailscale serve replaces x-forwarded-for, so notify_push cannot prove it
+    # is a trusted proxy over the public hostname. notify_push:setup keeps that
+    # hostname, since it is what clients connect to.
+    systemd.services.nextcloud-notify_push.environment.NEXTCLOUD_URL =
+      lib.mkForce "http://127.0.0.1:11000";
+  };
+}

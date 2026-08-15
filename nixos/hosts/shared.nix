@@ -26,7 +26,7 @@
       self.nixosModules.bitwarden
       self.nixosModules.joplin
       self.nixosModules.zotero
-      self.nixosModules.nextcloud
+      self.nixosModules.nextcloudClient
       self.nixosModules.neovim
       self.nixosModules.latex
       self.nixosModules.libreoffice
