@@ -37,6 +37,9 @@
         overwriteprotocol = "https";
         "overwrite.cli.url" = "https://${hostName}/";
         trusted_proxies = ["127.0.0.1" "::1"];
+
+        # UTC Hour for maintenance windows
+        maintenance_window_start = 8;
       };
 
       extraApps = {
