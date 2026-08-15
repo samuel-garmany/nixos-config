@@ -18,13 +18,13 @@
       inkscape
       loupe
       mpv
-      networkmanagerapplet
       orca-slicer
       qalculate-gtk
       qgis
       resources
       satty
       slack
+      snapshot
       veracrypt
       vorta
       zoom-us
