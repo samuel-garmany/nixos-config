@@ -26,7 +26,6 @@
   };
 
   flake.nixosModules.git = {pkgs, ...}: {
-    # Also wanted outside the login shell: by root, by scripts and by GUI apps
     environment.systemPackages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.git
     ];

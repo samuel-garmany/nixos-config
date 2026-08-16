@@ -6,9 +6,10 @@
       # system
       self.nixosModules.bluetooth
       self.nixosModules.boot
+      self.nixosModules.direnv
       self.nixosModules.hardware
-      self.nixosModules.locale
       self.nixosModules.networking
+      self.nixosModules.nixLd
       self.nixosModules.security
       self.nixosModules.tailscale
       self.nixosModules.yubikey
@@ -19,6 +20,7 @@
       self.nixosModules.qt
       self.nixosModules.fonts
       self.nixosModules.audio
+      self.nixosModules.geolocation
       self.nixosModules.niri
       self.nixosModules.login
       self.nixosModules.idle

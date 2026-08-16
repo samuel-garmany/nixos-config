@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.nix = {pkgs, ...}: {
+  flake.nixosModules.nix = {
     imports = [
       inputs.nix-index-database.nixosModules.nix-index
     ];
@@ -23,24 +23,5 @@
       dates = "weekly";
       options = "--delete-older-than 14d";
     };
-
-    programs.direnv = {
-      enable = true;
-      silent = false;
-      loadInNixShell = true;
-      nix-direnv.enable = true;
-    };
-
-    programs.nix-ld.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      # Nix tooling
-      nil
-      nixd
-      statix
-      alejandra
-      manix
-      nix-inspect
-    ];
   };
 }

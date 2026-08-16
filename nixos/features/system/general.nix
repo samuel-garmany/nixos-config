@@ -4,7 +4,12 @@
       self.nixosModules.nix
       self.nixosModules.environment
       self.nixosModules.git
+      self.nixosModules.locale
     ];
+
+    # Enable in-memory compressed devices and swap space provided by the zram
+    # kernel module.
+    zramSwap.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${self.username} = {

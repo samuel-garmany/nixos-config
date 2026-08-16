@@ -17,7 +17,9 @@
       gocryptfs
       inkscape
       loupe
+      manix
       mpv
+      nix-inspect
       orca-slicer
       qalculate-gtk
       qgis

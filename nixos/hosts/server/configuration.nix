@@ -44,12 +44,9 @@
     sops.defaultSopsFile = ../../../secrets/server.yaml;
 
     time.timeZone = "America/Denver";
-    i18n.defaultLocale = "en_US.UTF-8";
 
     # journald cannot move to the SSD, which is unlocked long after it starts.
     services.journald.extraConfig = "SystemMaxUse=200M";
-
-    zramSwap.enable = true;
 
     swapDevices = [
       {

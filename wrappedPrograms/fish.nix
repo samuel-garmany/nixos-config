@@ -17,7 +17,6 @@
         ${lib.getExe pkgs.starship} init fish | source
         ${lib.getExe pkgs.zoxide} init --cmd cd fish | source
         ${lib.getExe pkgs.fzf} --fish | source
-        ${lib.getExe pkgs.direnv} hook fish | source
 
         alias cat ${lib.getExe pkgs.bat}
         alias ls ${lib.getExe pkgs.eza}

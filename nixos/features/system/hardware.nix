@@ -1,7 +1,5 @@
 {
-  flake.nixosModules.hardware = {...}: {
-    zramSwap.enable = true;
-    systemd.oomd.enable = true;
+  flake.nixosModules.hardware = {
     services.fwupd.enable = true;
     services.fprintd.enable = true;
   };
