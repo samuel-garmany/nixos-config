@@ -16,7 +16,6 @@
         "calendar.extract.service.enabled" = true;
         "mail.compose.add_link_preview" = true;
         "mailnews.start_page.enabled" = false;
-        "mail.uidensity" = 0;
       };
 
       policies = {
