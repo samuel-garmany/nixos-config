@@ -82,6 +82,18 @@ Settings come from the store; the GUI only changes the running session.
 noctalia-shell ipc call state all | jq .settings > wrappedPrograms/noctalia/settings.json
 ```
 
+## uBlock Origin
+
+Settings come from the store; the GUI only changes the running session. No IPC,
+so the dump starts at Dashboard -> Settings -> Back up to file.
+
+```
+jq 'del(.timeStamp, .version, .hiddenSettings)' (ls -t ~/Downloads/my-ublock-backup_*.txt | head -1) > nixos/features/apps/firefox/ublock.json
+```
+
+`timeStamp`, `version` and `hiddenSettings` are in the backup but are not read
+back from `adminSettings`.
+
 ## Long-running jobs
 
 swayidle suspends after 30 idle minutes.

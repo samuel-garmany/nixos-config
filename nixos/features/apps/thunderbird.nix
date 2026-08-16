@@ -3,6 +3,14 @@
     # Config also taken from privacy guides
     programs.thunderbird = {
       enable = true;
+
+      preferencesStatus = "default";
+      preferences = {
+        "mail.identity.default.reply_on_top" = 1;
+        "mail.identity.default.sig_bottom" = false;
+        "mail.SpellCheckBeforeSend" = true;
+      };
+
       policies = {
         DisableTelemetry = true;
 

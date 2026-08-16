@@ -86,34 +86,7 @@
 
         "3rdparty".Extensions = {
           "uBlock0@raymondhill.net" = {
-            adminSettings = builtins.toJSON {
-              userSettings = {
-                advancedUserEnabled = true;
-              };
-
-              # Example configuration with exceptions:
-              # (Note: 'noop' overrides the global block and falls back to standard filter lists, which is the safest way to unbreak sites)
-              #
-              # dynamicFilteringString = ''
-              #   * * 3p-script block
-              #   * * 3p-frame block
-              #
-              #   # Exception: allow all 3rd-party scripts to run on nixos.org
-              #   nixos.org * 3p-script noop
-              #
-              #   # Exception: allow scripts from a specific domain (like github.com) to run on nixos.org
-              #   nixos.org github.com * noop
-              # '';
-
-              dynamicFilteringString = ''
-                * * 3p-script block
-                * * 3p-frame block
-                canvas.colorado.edu * 3p-script noop
-                canvas.colorado.edu * 3p-frame noop
-                github.com * 3p-frame noop
-                github.com * 3p-script noop
-              '';
-            };
+            adminSettings = builtins.readFile ./ublock.json;
           };
         };
       };

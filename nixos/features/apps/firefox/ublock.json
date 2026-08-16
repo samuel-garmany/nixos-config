@@ -1,0 +1,6 @@
+{
+  "userSettings": {
+    "advancedUserEnabled": true
+  },
+  "dynamicFilteringString": "* * 3p-script block\n* * 3p-frame block\ncanvas.colorado.edu * 3p-script noop\ncanvas.colorado.edu * 3p-frame noop\ngithub.com * 3p-frame noop\ngithub.com * 3p-script noop"
+}
