@@ -47,7 +47,7 @@
       (inputs.wrappers.wrapperModules.alacritty.apply {
         inherit pkgs;
         imports = [self.wrappersModules.alacritty];
-        shell = lib.getExe self'.packages.environment;
+        shell = lib.getExe self'.packages.fish;
       }).wrapper;
   };
 }

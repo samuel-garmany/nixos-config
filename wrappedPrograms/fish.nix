@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   perSystem = {
     pkgs,
     lib,
@@ -25,11 +29,11 @@
         # https://yazi-rs.github.io/docs/quick-start
         function y
         	set tmp (mktemp -t "yazi-cwd.XXXXXX")
-        	yazi $argv --cwd-file="$tmp"
-        	if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        	command yazi $argv --cwd-file="$tmp"
+        	if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
         		builtin cd -- "$cwd"
         	end
-        	rm -f -- "$tmp"
+        	command rm -f -- "$tmp"
         end
       '';
   in {
@@ -40,5 +44,26 @@
         "-C" = "source ${fishConf}";
       };
     };
+  };
+
+  flake.nixosModules.fish = {
+    pkgs,
+    lib,
+    ...
+  }: let
+    shell = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.fish;
+  in {
+    # The path to the user's shell.
+    # Using fish as your login shell (via /etc/passwd) may cause issues,
+    # particularly for the root user, because fish is not POSIX compliant.
+    users.users.${self.username}.shell = shell;
+
+    # Whether to configure fish as an interactive shell.
+    # To enable vendor fish completions provided by Nixpkgs you will also want
+    # to enable the fish shell.
+    programs.fish.enable = true;
+
+    # A list of permissible login shells for user accounts.
+    environment.shells = [shell];
   };
 }
