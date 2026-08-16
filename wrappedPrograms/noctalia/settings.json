@@ -81,14 +81,7 @@
           "pinned": []
         },
         {
-          "displayMode": "onhover",
-          "iconColor": "none",
-          "id": "Microphone",
-          "middleClickCommand": "pwvucontrol || pavucontrol",
-          "textColor": "none"
-        },
-        {
-          "displayMode": "onhover",
+          "displayMode": "alwaysHide",
           "iconColor": "none",
           "id": "Volume",
           "middleClickCommand": "pwvucontrol || pavucontrol",
@@ -107,7 +100,7 @@
           "hideIfNotDetected": true,
           "id": "Battery",
           "showNoctaliaPerformance": false,
-          "showPowerProfiles": true
+          "showPowerProfiles": false
         },
         {
           "hideWhenZero": false,
@@ -330,13 +323,13 @@
     "shortcuts": {
       "left": [
         {
+          "id": "Network"
+        },
+        {
           "id": "Bluetooth"
         },
         {
-          "id": "DarkMode"
-        },
-        {
-          "id": "NightLight"
+          "id": "AirplaneMode"
         }
       ],
       "right": [
@@ -347,7 +340,10 @@
           "id": "KeepAwake"
         },
         {
-          "id": "WallpaperSelector"
+          "id": "NightLight"
+        },
+        {
+          "id": "DarkMode"
         }
       ]
     },
@@ -361,7 +357,7 @@
         "id": "shortcuts-card"
       },
       {
-        "enabled": false,
+        "enabled": true,
         "id": "audio-card"
       },
       {
