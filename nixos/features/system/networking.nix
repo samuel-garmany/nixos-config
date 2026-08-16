@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.networking = {...}: {
+  flake.nixosModules.networking = {
     # Enable networking
     networking.networkmanager.enable = true;
     # Specify the Wi-Fi backend used for the device.

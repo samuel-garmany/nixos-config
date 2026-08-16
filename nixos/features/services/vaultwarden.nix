@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.vaultwarden = {...}: {
+  flake.nixosModules.vaultwarden = {
     services.vaultwarden = {
       enable = true;
       domain = self.vaultDomain;

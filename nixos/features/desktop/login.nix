@@ -34,12 +34,5 @@
     security.pam.services.login.fprintAuth = false;
     security.pam.services.noctalia = {};
     security.pam.services.passwd.enableGnomeKeyring = true;
-
-    # If enabled, pam_gnome_keyring will attempt to automatically unlock the
-    # user's default Gnome keyring upon login. If the user login password does
-    # not match their keyring password, Gnome Keyring will prompt separately
-    # after login.
-    # security.pam.services.<name>.enableGnomeKeyring
-    security.pam.services.greetd.enableGnomeKeyring = true;
   };
 }

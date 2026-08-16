@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.sober = {...}: {
+  flake.nixosModules.sober = {
     imports = [
       inputs.nix-flatpak.nixosModules.nix-flatpak
     ];

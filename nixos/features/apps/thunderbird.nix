@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.thunderbird = {...}: {
+  flake.nixosModules.thunderbird = {
     # Config also taken from privacy guides
     programs.thunderbird = {
       enable = true;

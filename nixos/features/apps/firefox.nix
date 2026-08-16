@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.firefox = {...}: {
+  flake.nixosModules.firefox = {
     # Install firefox.
     # Settings are pulled from privacyguides
     programs.firefox = {

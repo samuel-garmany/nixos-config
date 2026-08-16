@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.adguardHome = {...}: {
+  flake.nixosModules.adguardHome = {
     services.adguardhome = {
       enable = true;
 

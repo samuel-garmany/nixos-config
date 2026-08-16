@@ -21,9 +21,7 @@
       # Required for plymouth to draw the LUKS passphrase prompt
       initrd.systemd.enable = true;
 
-      plymouth = {
-        enable = true;
-      };
+      plymouth.enable = true;
 
       # Enable "Silent boot"
       consoleLogLevel = 3;

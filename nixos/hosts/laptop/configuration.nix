@@ -9,7 +9,7 @@
     ];
   };
 
-  flake.nixosModules.hostLaptop = {...}: {
+  flake.nixosModules.hostLaptop = {
     imports = [
       self.nixosModules.workstation
 

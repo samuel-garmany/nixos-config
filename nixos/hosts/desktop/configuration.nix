@@ -9,7 +9,7 @@
     ];
   };
 
-  flake.nixosModules.hostDesktop = {...}: {
+  flake.nixosModules.hostDesktop = {
     imports = [
       self.nixosModules.workstation
 
