@@ -70,7 +70,7 @@
           "useCustomFont": false
         },
         {
-          "hideWhenZero": true,
+          "hideWhenZero": false,
           "hideWhenZeroUnread": false,
           "iconColor": "none",
           "id": "NotificationHistory",
