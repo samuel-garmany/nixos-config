@@ -68,6 +68,14 @@
           "id": "Clock",
           "tooltipFormat": "HH:mm ddd, MMM dd",
           "useCustomFont": false
+        },
+        {
+          "hideWhenZero": false,
+          "hideWhenZeroUnread": false,
+          "iconColor": "none",
+          "id": "NotificationHistory",
+          "showUnreadBadge": true,
+          "unreadBadgeColor": "primary"
         }
       ],
       "right": [
@@ -95,15 +103,20 @@
         {
           "displayMode": "onhover",
           "iconColor": "none",
-          "id": "Volume",
+          "id": "Microphone",
           "middleClickCommand": "pwvucontrol || pavucontrol",
           "textColor": "none"
         },
         {
           "displayMode": "onhover",
           "iconColor": "none",
-          "id": "Microphone",
+          "id": "Volume",
           "middleClickCommand": "pwvucontrol || pavucontrol",
+          "textColor": "none"
+        },
+        {
+          "iconColor": "none",
+          "id": "KeepAwake",
           "textColor": "none"
         },
         {
@@ -114,19 +127,6 @@
           "id": "Battery",
           "showNoctaliaPerformance": false,
           "showPowerProfiles": true
-        },
-        {
-          "iconColor": "none",
-          "id": "KeepAwake",
-          "textColor": "none"
-        },
-        {
-          "hideWhenZero": false,
-          "hideWhenZeroUnread": false,
-          "iconColor": "none",
-          "id": "NotificationHistory",
-          "showUnreadBadge": true,
-          "unreadBadgeColor": "primary"
         },
         {
           "colorizeDistroLogo": false,
