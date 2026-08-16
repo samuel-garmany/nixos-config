@@ -8,7 +8,7 @@ and a host is a list of the ones it wants.
 | host | hardware | role |
 | --- | --- | --- |
 | `desktop` | Intel CPU, AMD GPU | niri, noctalia, Secure Boot via lanzaboote |
-| `laptop` | Framework 13 AMD | the same desktop on the road |
+| `laptop` | Framework 13 AMD | the same desktop trimmed down |
 | `server` | Raspberry Pi 4B, aarch64 | Nextcloud, Vaultwarden, Calibre-Web, AdGuard Home, cloudflared |
 
 ```
