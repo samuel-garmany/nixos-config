@@ -28,14 +28,14 @@
     "widgets": {
       "left": [
         {
-          "colorizeDistroLogo": false,
           "colorizeSystemIcon": "none",
           "colorizeSystemText": "none",
           "customIconPath": "",
-          "enableColorization": false,
-          "icon": "noctalia",
-          "id": "ControlCenter",
-          "useDistroLogo": true
+          "enableColorization": true,
+          "icon": "rocket",
+          "iconColor": "none",
+          "id": "Launcher",
+          "useDistroLogo": false
         },
         {
           "characterCount": 2,
@@ -127,6 +127,16 @@
           "id": "NotificationHistory",
           "showUnreadBadge": true,
           "unreadBadgeColor": "primary"
+        },
+        {
+          "colorizeDistroLogo": false,
+          "colorizeSystemIcon": "none",
+          "colorizeSystemText": "none",
+          "customIconPath": "",
+          "enableColorization": true,
+          "icon": "noctalia",
+          "id": "ControlCenter",
+          "useDistroLogo": true
         }
       ]
     },
