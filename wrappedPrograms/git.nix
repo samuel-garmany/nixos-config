@@ -17,11 +17,18 @@
         settings = {
           user = {
             name = self.fullName;
-            email = self.email;
+            email = "65299214+samuel-garmany@users.noreply.github.com";
           };
           init.defaultBranch = "main";
           core.excludesFile = toString ignores;
         };
       }).wrapper;
+  };
+
+  flake.nixosModules.git = {pkgs, ...}: {
+    # Also wanted outside the login shell: by root, by scripts and by GUI apps
+    environment.systemPackages = [
+      self.packages.${pkgs.stdenv.hostPlatform.system}.git
+    ];
   };
 }

@@ -8,10 +8,6 @@
       type = lib.types.str;
     };
 
-    email = lib.mkOption {
-      type = lib.types.str;
-    };
-
     authorizedKeys = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [];
@@ -21,7 +17,6 @@
   config.flake = {
     username = "user";
     fullName = "Samuel Garmany";
-    email = "65299214+samuel-garmany@users.noreply.github.com";
 
     authorizedKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8Oq+mVW8+eKyLtpefLdnkAMRrmVeVDfotlYfdGhs74 user@secureblue"

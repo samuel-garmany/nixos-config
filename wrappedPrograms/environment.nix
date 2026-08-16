@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   perSystem = {
     pkgs,
     self',
@@ -30,5 +34,26 @@
         pkgs.unzip
       ];
     };
+  };
+
+  flake.nixosModules.environment = {
+    pkgs,
+    lib,
+    ...
+  }: let
+    shell = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.environment;
+  in {
+    # The path to the user's shell.
+    # Using fish as your login shell (via /etc/passwd) may cause issues,
+    # particularly for the root user, because fish is not POSIX compliant.
+    users.users.${self.username}.shell = shell;
+
+    # Whether to configure fish as an interactive shell.
+    # To enable vendor fish completions provided by Nixpkgs you will also want
+    # to enable the fish shell.
+    programs.fish.enable = true;
+
+    # A list of permissible login shells for user accounts.
+    environment.shells = [shell];
   };
 }

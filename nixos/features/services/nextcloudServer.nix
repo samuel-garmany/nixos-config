@@ -33,13 +33,28 @@
       secretFile = config.sops.secrets.nextcloud-secrets.path;
 
       settings = {
-        instanceid = "ocpnbedx91cj";
         overwriteprotocol = "https";
         "overwrite.cli.url" = "https://${hostName}/";
         trusted_proxies = ["127.0.0.1" "::1"];
 
         # UTC Hour for maintenance windows
         maintenance_window_start = 8;
+
+        # The preview providers that should be explicitly enabled.
+        # The module default, plus HEIC for iPhone stills.
+        enabledPreviewProviders = [
+          "OC\\Preview\\PNG"
+          "OC\\Preview\\JPEG"
+          "OC\\Preview\\GIF"
+          "OC\\Preview\\BMP"
+          "OC\\Preview\\XBitmap"
+          "OC\\Preview\\Krita"
+          "OC\\Preview\\WebP"
+          "OC\\Preview\\MarkDown"
+          "OC\\Preview\\TXT"
+          "OC\\Preview\\OpenDocument"
+          "OC\\Preview\\HEIC"
+        ];
       };
 
       extraApps = {
