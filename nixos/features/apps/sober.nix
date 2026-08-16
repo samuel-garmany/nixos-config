@@ -10,6 +10,10 @@
       packages = [
         "org.vinegarhq.Sober"
       ];
+      update.auto = {
+        enable = true;
+        onCalendar = "weekly"; # Default value
+      };
     };
   };
 }

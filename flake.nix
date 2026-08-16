@@ -41,7 +41,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs = inputs:
