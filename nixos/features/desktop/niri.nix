@@ -42,6 +42,8 @@
       # systemd.user.services.<name>.enableDefaultPath
       enableDefaultPath = false;
 
+      startLimitIntervalSec = 0;
+
       serviceConfig.Restart = "always";
       serviceConfig.RestartSec = 2;
       serviceConfig.ExecStart = "${selfpkgs.noctalia-shell}/bin/noctalia-shell";

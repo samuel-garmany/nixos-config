@@ -1,11 +1,7 @@
 {self, ...}: {
   # Idles: waits for idleness and runs a command
   # See swayidle(1)
-  flake.nixosModules.idle = {
-    pkgs,
-    config,
-    ...
-  }: let
+  flake.nixosModules.idle = {pkgs, ...}: let
     noctalia = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia-shell;
     lock = "${noctalia}/bin/noctalia-shell ipc call lockScreen lock";
   in {
@@ -21,9 +17,6 @@
 
       serviceConfig.ExecStart = ''
         ${pkgs.swayidle}/bin/swayidle -w \
-          timeout 300 '${lock}' \
-          timeout 360 '${config.programs.niri.package}/bin/niri msg action power-off-monitors' \
-          timeout 1800 'systemctl suspend' \
           before-sleep '${lock}'
       '';
     };

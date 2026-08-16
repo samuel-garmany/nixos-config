@@ -9,10 +9,20 @@
         "mail.identity.default.reply_on_top" = 1;
         "mail.identity.default.sig_bottom" = false;
         "mail.SpellCheckBeforeSend" = true;
+
+        "mail.accounthub.manualconfig.enabled" = true;
+        "calendar.dialogs.new.enabled" = true;
+        "calendar.item.editInTab" = true;
+        "calendar.extract.service.enabled" = true;
+        "mail.compose.add_link_preview" = true;
+        "mailnews.start_page.enabled" = false;
+        "mail.uidensity" = 0;
       };
 
       policies = {
         DisableTelemetry = true;
+
+        InAppNotification.Disabled = true;
 
         Preferences = {
           # Remember websites and links I've visited
