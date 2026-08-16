@@ -125,7 +125,4 @@ sudo nmcli connection modify "<name>" 802-1x.ca-cert "/etc/wpa_supplicant/certs/
 nmcli connection modify "eduroam [<uuid>]" 802-11-wireless.cloned-mac-address permanent
 ```
 
-Survives rebuilds, not reinstalls. SecureW2 certificates expire yearly. To make
-this declarative: `networking.networkmanager.ensureProfiles` substitutes
-`environmentFiles` into profiles with envsubst, and certificates can come from
-`sops.secrets.<name>.path` with `owner = "wpa_supplicant"`.
+Survives rebuilds, not reinstalls. SecureW2 certificates expire. Probably could be made declarative with sops but for a temporary keys seemed like a hassle.
