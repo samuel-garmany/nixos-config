@@ -363,7 +363,7 @@
         "id": "shortcuts-card"
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "audio-card"
       },
       {
