@@ -485,6 +485,27 @@
         "countdownEnabled": true,
         "enabled": true,
         "keybind": "5"
+      },
+      {
+        "action": "hibernate",
+        "command": "",
+        "countdownEnabled": true,
+        "enabled": false,
+        "keybind": ""
+      },
+      {
+        "action": "userspaceReboot",
+        "command": "",
+        "countdownEnabled": true,
+        "enabled": false,
+        "keybind": ""
+      },
+      {
+        "action": "rebootToUefi",
+        "command": "",
+        "countdownEnabled": true,
+        "enabled": false,
+        "keybind": ""
       }
     ]
   },
