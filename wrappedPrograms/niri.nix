@@ -151,6 +151,15 @@
         }
       ];
 
+      # Layer rules let you adjust behavior for individual layer-shell surfaces.
+      # https://niri-wm.github.io/niri/Configuration:-Layer-Rules
+      layer-rules = [
+        {
+          matches = [{namespace = "^noctalia-overview";}];
+          place-within-backdrop = true;
+        }
+      ];
+
       binds = {
         # Keys consist of modifiers separated by + signs, followed by an XKB key name
         # in the end. To find an XKB name for a particular key, you may use a program

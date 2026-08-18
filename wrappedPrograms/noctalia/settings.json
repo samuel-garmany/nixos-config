@@ -245,7 +245,7 @@
   },
   "wallpaper": {
     "enabled": true,
-    "overviewEnabled": true,
+    "overviewEnabled": false,
     "directory": "/home/user/Pictures/Wallpapers",
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
