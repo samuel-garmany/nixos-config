@@ -8,7 +8,6 @@
       preferences = {
         "mail.identity.default.reply_on_top" = 1;
         "mail.identity.default.sig_bottom" = false;
-        "mail.SpellCheckBeforeSend" = true;
 
         "mail.accounthub.manualconfig.enabled" = true;
         "calendar.dialogs.new.enabled" = true;
