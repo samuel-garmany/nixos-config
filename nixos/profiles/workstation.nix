@@ -29,6 +29,7 @@
       # apps
       self.nixosModules.apps
       self.nixosModules.bitwarden
+      self.nixosModules.brave
       self.nixosModules.firefox
       self.nixosModules.joplin
       self.nixosModules.latex
