@@ -8,6 +8,7 @@
       audacity
       baobab
       blanket
+      foliate
       freecad
       file-roller
       freetube
