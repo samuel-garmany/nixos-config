@@ -9,7 +9,7 @@ and a host is a list of the ones it wants.
 | --- | --- | --- |
 | `desktop` | Intel CPU, AMD GPU | niri, noctalia, Secure Boot via lanzaboote |
 | `laptop` | Framework 13 AMD | the same desktop trimmed down |
-| `server` | Raspberry Pi 4B, aarch64 | Nextcloud, Vaultwarden, Calibre-Web, AdGuard Home, cloudflared |
+| `server` | Raspberry Pi 4B, aarch64 | Nextcloud, Vaultwarden, Calibre-Web, Miniflux, AdGuard Home, cloudflared |
 
 ```
 nixos-rebuild switch --flake .#<hostname>
@@ -42,6 +42,7 @@ tailscale serve --bg --https=443  8080   # nextcloud
 tailscale serve --bg --https=8443 3000   # adguard home
 tailscale serve --bg --https=8444 8081   # vaultwarden
 tailscale serve --bg --https=8445 8083   # calibre-web
+tailscale serve --bg --https=8446 8082   # miniflux
 
 tailscale serve status
 ```

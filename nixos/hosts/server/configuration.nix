@@ -22,6 +22,7 @@
       self.nixosModules.adguardHome
       self.nixosModules.calibreWeb
       self.nixosModules.cloudflared
+      self.nixosModules.miniflux
       self.nixosModules.nextcloudServer
       self.nixosModules.vaultwarden
     ];
