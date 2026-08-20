@@ -1,5 +1,11 @@
 {
   flake.nixosModules.firefox = {
+    xdg.mime.defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+    };
+
     # Install firefox.
     # Settings are pulled from privacyguides
     programs.firefox = {
