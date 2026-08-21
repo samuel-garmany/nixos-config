@@ -1,9 +1,7 @@
 {
-  flake.nixosModules.latex = {pkgs, ...}: {
+  flake.nixosModules.typesetting = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-      texliveFull
       typst
-      ltex-ls
       poppler-utils
     ];
   };

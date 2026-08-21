@@ -95,6 +95,16 @@ jq 'del(.timeStamp, .version, .hiddenSettings)' (ls -t ~/Downloads/my-ublock-bac
 `timeStamp`, `version` and `hiddenSettings` are in the backup but are not read
 back from `adminSettings`.
 
+## Dev shells
+
+direnv loads a shell on entering a directory, and Neovim inherits it. Shells
+are defined in `devShells/`.
+
+```
+echo 'use flake ~/nixos-config#<shell>' > .envrc
+direnv allow
+```
+
 ## Long-running jobs
 
 swayidle suspends after 30 idle minutes.

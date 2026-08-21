@@ -1,5 +1,9 @@
 {inputs, ...}: {
-  flake.nixosModules.neovim = {pkgs, ...}: {
+  flake.nixosModules.neovim = {
+    lib,
+    pkgs,
+    ...
+  }: {
     imports = [
       inputs.nvf.nixosModules.default
     ];
@@ -16,6 +20,11 @@
           viAlias = true;
           vimAlias = true;
 
+          # Set the case sensitivity of search
+          searchCase = "smart";
+
+          undoFile.enable = true;
+
           # vim.opts and vim.options are aliased
           opts = {
             shiftwidth = 2;
@@ -30,19 +39,18 @@
             breakindent = true;
 
             # Autosave
-            autowrite = true;
             autowriteall = true;
 
             # Quality of life
             scrolloff = 8;
             sidescrolloff = 8;
-            ignorecase = true;
-            smartcase = true;
             signcolumn = "yes";
           };
 
           spellcheck = {
             enable = true;
+            extraSpellWords."en.utf-8" =
+              lib.filter (w: w != "") (lib.splitString "\n" (builtins.readFile ./spell-words.txt));
           };
 
           lsp = {
@@ -51,11 +59,31 @@
             enable = true;
 
             formatOnSave = true;
+            inlayHints.enable = true;
             lightbulb.enable = true;
             trouble.enable = true;
             lspSignature.enable = true; # safe with nvim-cmp
             presets.tailwindcss-language-server.enable = true;
             otter-nvim.enable = true;
+
+            # nvim-lspconfig, also enabled automatically
+            lspconfig.enable = true;
+            lspconfig.sources.r_language_server = "vim.lsp.enable('r_language_server')";
+            lspconfig.sources.ltex = ''
+              vim.lsp.config('ltex', {
+                cmd = {"${lib.getExe pkgs.ltex-ls}"},
+                handlers = {
+                  ["$/progress"] = function() end,
+                  ["window/workDoneProgress/create"] = function() return vim.NIL end,
+                },
+                settings = {
+                  ltex = {
+                    language = "en-US",
+                  },
+                },
+              })
+              vim.lsp.enable('ltex')
+            '';
           };
 
           debugger = {
@@ -86,7 +114,6 @@
 
             # Languages that are enabled in the maximal configuration.
             bash.enable = true;
-            clang.enable = true;
             css.enable = true;
             html.enable = true;
             json.enable = true;
@@ -97,15 +124,17 @@
             tex.enable = true;
 
             # Language modules that are not as common.
-            scala.enable = true;
-            r.enable = true;
+            r = {
+              enable = true;
+              lsp.enable = false;
+              format.enable = false;
+            };
             typst.enable = true;
           };
 
           visuals = {
             nvim-scrollbar.enable = true;
             nvim-web-devicons.enable = true;
-            nvim-cursorline.enable = true;
             cinnamon-nvim.enable = true;
             fidget-nvim.enable = true;
 
@@ -123,6 +152,7 @@
           statusline = {
             lualine = {
               enable = true;
+              integrations.breadcrumbs.navbuddy.enable = true;
               setupOpts = {
                 sections = {
                   lualine_z = {};
@@ -158,7 +188,10 @@
             };
           };
 
-          treesitter.context.enable = true;
+          treesitter = {
+            context.enable = true;
+            textobjects.enable = true;
+          };
 
           binds = {
             whichKey.enable = true;
@@ -189,6 +222,7 @@
           };
 
           utility = {
+            direnv.enable = true;
             multicursors.enable = true;
             diffview-nvim.enable = true;
             surround.enable = true;
@@ -215,10 +249,6 @@
           ui = {
             borders.enable = true;
             noice.enable = true;
-            breadcrumbs = {
-              enable = true;
-              navbuddy.enable = true;
-            };
             colorizer.enable = true;
             illuminate.enable = true;
             smartcolumn.enable = false;
@@ -273,7 +303,7 @@
             }
             {
               key = "<Esc>";
-              mode = ["n" "i"];
+              mode = ["n"];
               action = "<cmd>nohlsearch<CR><Esc>";
               silent = true;
               desc = "Clear Search Highlights";
@@ -317,10 +347,7 @@
 
           autocmds = [
             {
-              event = [
-                "FocusLost"
-                "BufLeave"
-              ];
+              event = ["FocusLost"];
               pattern = ["*"];
               command = "silent! wa";
             }
@@ -338,24 +365,6 @@
             "typst-preview.nvim" = {
               package = typst-preview-nvim;
               setup = "require('typst-preview').setup()";
-            };
-            "ltex-ls-setup" = {
-              package = nvim-lspconfig;
-              setup = ''
-                vim.lsp.config('ltex', {
-                  filetypes = { "markdown", "tex", "latex", "org" },
-                  handlers = {
-                    ["$/progress"] = function() end,
-                    ["window/workDoneProgress/create"] = function() return vim.NIL end,
-                  },
-                  settings = {
-                    ltex = {
-                      language = "en-US",
-                    },
-                  },
-                })
-                vim.lsp.enable('ltex')
-              '';
             };
             "R.nvim" = {
               package = pkgs.vimUtils.buildVimPlugin {
@@ -377,14 +386,5 @@
         };
       };
     };
-
-    environment.systemPackages = with pkgs; [
-      gcc
-      gnumake
-      lazygit
-      wl-clipboard
-      nodejs
-      tree-sitter
-    ];
   };
 }

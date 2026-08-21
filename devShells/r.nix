@@ -5,6 +5,7 @@
         # Core R and Pre-compiled CRAN Packages
         R
         rPackages.languageserver
+        rPackages.styler
         rPackages.rmarkdown
         rPackages.knitr
         rPackages.tidyverse

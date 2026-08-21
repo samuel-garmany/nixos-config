@@ -32,7 +32,7 @@
       self.nixosModules.brave
       self.nixosModules.firefox
       self.nixosModules.joplin
-      self.nixosModules.latex
+      self.nixosModules.typesetting
       self.nixosModules.libreoffice
       self.nixosModules.nautilus
       self.nixosModules.neovim
