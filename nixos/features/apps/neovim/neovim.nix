@@ -202,8 +202,9 @@
 
           git = {
             enable = true;
-            gitsigns.enable = true;
-            gitsigns.codeActions.enable = false; # throws an annoying debug message
+            git-conflict.enable = false;
+            hunk-nvim.enable = false;
+            vim-fugitive.enable = false;
           };
 
           dashboard = {
@@ -258,7 +259,7 @@
           assistant = {
             copilot = {
               enable = true;
-              cmp.enable = true;
+              cmp.enable = false;
             };
           };
 
