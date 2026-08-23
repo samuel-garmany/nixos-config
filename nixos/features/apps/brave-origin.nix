@@ -1,8 +1,8 @@
 {
   # Enable policies for chromium based browsers like Chromium, Google Chrome or Brave
-  flake.nixosModules.brave = {pkgs, ...}: {
+  flake.nixosModules.brave-origin = {pkgs, ...}: {
     environment.systemPackages = [
-      (pkgs.brave.override {
+      (pkgs.brave-origin.override {
         commandLineArgs = "--ozone-platform-hint=auto";
       })
     ];
