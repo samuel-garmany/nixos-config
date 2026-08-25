@@ -5,7 +5,6 @@
     environment.systemPackages = with pkgs; [
       anki
       anydesk
-      arduino-ide
       audacity
       baobab
       blanket

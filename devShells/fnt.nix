@@ -1,18 +1,20 @@
 {
   perSystem = {pkgs, ...}: let
-    python = pkgs.python312;
-    pythonEnv = python.withPackages (ps:
-      with ps; [
-        pyqt5
-        pip
-        setuptools
-        wheel
-      ]);
+    pythonEnv = pkgs.python312.withPackages (
+      ps:
+        with ps; [
+          pip
+          pyqt5
+          setuptools
+          wheel
+        ]
+    );
 
+    # Libraries loaded at runtime by pip-installed manylinux wheels.
     runtimeLibs = with pkgs; [
-      stdenv.cc.cc.lib # libstdc++
+      stdenv.cc.cc.lib
       zlib
-      glib # libgthread, needed by cv2
+      glib
       libGL
       openssl
       libx11
@@ -21,6 +23,8 @@
       libice
     ];
 
+    # Qt applications need this variable set to find the platform plugins.
+    # https://nixos.org/manual/nixpkgs/stable/#sec-language-qt
     qtPlugins = with pkgs.qt5;
       pkgs.lib.concatStringsSep ":" (map (p: "${p}/${qtbase.qtPluginPrefix}") [
         qtbase.bin
@@ -28,16 +32,16 @@
         qtsvg.bin
       ]);
   in {
-    devShells.pyqt = pkgs.mkShell {
+    devShells.fnt = pkgs.mkShell {
       packages =
         [pythonEnv]
         ++ (with pkgs; [
-          uv
           # ffmpeg: Must be installed and added to your system PATH for video
           # processing features to work.
           ffmpeg
           git
           qt5.qtwayland
+          uv
         ]);
 
       # Enable Wayland support for Qt applications.
@@ -45,24 +49,18 @@
       QT_PLUGIN_PATH = qtPlugins;
 
       shellHook = ''
+        # Expose standard C libraries to pip-installed C-extensions.
         export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath runtimeLibs}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
-        if [ ! -f pyproject.toml ]; then
-          echo "pyqt shell ready (no pyproject.toml here, skipping venv setup)."
-        else
+        if [ -f pyproject.toml ]; then
+          # Recreate the virtual environment when its interpreter is missing,
+          # keeping site-packages. Leaves a dangling symlink in place otherwise.
           if [ ! -e .venv/bin/python ]; then
-            if [ -d .venv ]; then
-              echo "pyqt: .venv interpreter is missing or dangling, repairing in place"
-              rm -f .venv/bin/python .venv/bin/python3 .venv/bin/python3.*
-            fi
+            rm -f .venv/bin/python .venv/bin/python3 .venv/bin/python3.*
             python -m venv .venv --system-site-packages
           fi
 
           source .venv/bin/activate
-
-          echo "pyqt shell ready."
-          echo "  first run, or after pyproject.toml changes:  pip install -e ."
-          echo "  launch the GUI:                              fnt"
         fi
       '';
     };

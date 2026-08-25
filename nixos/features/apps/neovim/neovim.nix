@@ -66,6 +66,21 @@
             presets.tailwindcss-language-server.enable = true;
             otter-nvim.enable = true;
 
+            # -fqbn: Fully qualified board name to use initially (can be
+            # changed via JSON-RPC). Defaults to arduino:avr:uno.
+            # https://github.com/arduino/arduino-language-server
+            servers.arduino-language-server.cmd = lib.mkForce [
+              (lib.getExe pkgs.arduino-language-server)
+              "-clangd"
+              (lib.getExe' pkgs.clang-tools "clangd")
+              "-cli"
+              (lib.getExe pkgs.arduino-cli)
+              "-cli-config"
+              "$HOME/.arduino15/arduino-cli.yaml"
+              "-fqbn"
+              "adafruit:samd:adafruit_feather_m0"
+            ];
+
             # nvim-lspconfig, also enabled automatically
             lspconfig.enable = true;
             lspconfig.sources.r_language_server = "vim.lsp.enable('r_language_server')";
@@ -124,6 +139,7 @@
             tex.enable = true;
 
             # Language modules that are not as common.
+            arduino.enable = true;
             r = {
               enable = true;
               lsp.enable = false;
