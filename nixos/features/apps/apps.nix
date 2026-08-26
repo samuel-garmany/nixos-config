@@ -9,7 +9,6 @@
       baobab
       blanket
       foliate
-      freecad
       file-roller
       freetube
       gimp
@@ -21,7 +20,6 @@
       manix
       mpv
       nix-inspect
-      orca-slicer
       qalculate-gtk
       qgis
       resources

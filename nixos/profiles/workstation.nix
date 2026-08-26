@@ -4,6 +4,7 @@
       self.nixosModules.general
 
       # system
+      self.nixosModules.appimage
       self.nixosModules.bluetooth
       self.nixosModules.boot
       self.nixosModules.direnv
@@ -30,6 +31,8 @@
       self.nixosModules.apps
       self.nixosModules.bitwarden
       self.nixosModules.brave-origin
+      self.nixosModules.chemistry
+      self.nixosModules.fabrication
       self.nixosModules.firefox
       self.nixosModules.joplin
       self.nixosModules.typesetting
