@@ -41,11 +41,27 @@ Kept in tailscaled's state, not in the flake.
 tailscale serve --bg --https=443  8080   # nextcloud
 tailscale serve --bg --https=8443 3000   # adguard home
 tailscale serve --bg --https=8444 8081   # vaultwarden
-tailscale serve --bg --https=8445 8083   # calibre-web
 tailscale serve --bg --https=8446 8082   # miniflux
 
 tailscale serve status
+tailscale serve --https=<port> off
 ```
+
+## Kobo sync
+
+Enable it under Admin -> Feature Configuration, then generate a token from the
+user's profile. Calibre-Web builds the endpoint from the URL it was reached on,
+so open it through the public hostname, not localhost.
+
+```
+api_endpoint=<url>   # add to .kobo/Kobo/Kobo eReader.conf on the device
+```
+
+nginx fronts it because `cps/reverseproxy.py` reads `X-Scheme` rather than
+`X-Forwarded-Proto`, and counts a request as proxied only when `X-Script-Name` or
+`X-Forwarded-Host` is set. Unproxied, `cps/kobo.py` builds book download URLs
+from `request.scheme` and the Server External Port instead of `url_for`, and no
+book downloads.
 
 ## TPM
 

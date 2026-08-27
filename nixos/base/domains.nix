@@ -9,10 +9,15 @@
     vaultDomain = lib.mkOption {
       type = lib.types.str;
     };
+
+    calibreDomain = lib.mkOption {
+      type = lib.types.str;
+    };
   };
 
   config.flake = {
     tailnet = "tail5c3838.ts.net";
     vaultDomain = "vault.garmany.me";
+    calibreDomain = "calibre.garmany.me";
   };
 }
