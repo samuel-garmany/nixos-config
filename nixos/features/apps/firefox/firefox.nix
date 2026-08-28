@@ -40,12 +40,6 @@
         #   Locked = true; # Prevents changing this setting in the Firefox UI
         # };
         Preferences = {
-          # Scroll speed. Status "user" so it stays adjustable in about:config.
-          "mousewheel.default.delta_multiplier_y" = {
-            Value = 50;
-            Status = "user";
-          };
-
           # Vertical Tabs
           "sidebar.verticalTabs" = true;
           "sidebar.visibility" = "expand-on-hover";

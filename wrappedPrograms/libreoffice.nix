@@ -15,7 +15,7 @@
       # none pairs colibre with colibre_dark; gnome pairs elementary with
       # sifr_dark.
       # vcl/source/app/IconThemeSelector.cxx
-      env.OOO_FORCE_DESKTOP = "none";
+      # env.OOO_FORCE_DESKTOP = "none";
     };
   };
 

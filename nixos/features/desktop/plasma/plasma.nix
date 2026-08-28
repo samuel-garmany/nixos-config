@@ -10,6 +10,10 @@
     # but does not enable it.
     services.displayManager.sddm.enable = true;
 
+    # plasma6 turns this on by default; it installs akonadi, and kmail and
+    # merkuro are separate options that stay off.
+    programs.kde-pim.enable = false;
+
     # Configure keymap in X11
     services.xserver.xkb = {
       layout = "us";
@@ -24,6 +28,7 @@
     ];
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
+      discover
       elisa
       khelpcenter
     ];
@@ -36,13 +41,5 @@
       (lib.filterAttrs
         (name: type: type == "regular" && !lib.hasPrefix "." name)
         (builtins.readDir ./config));
-
-    environment.extraSetup = ''
-      rm -f $out/share/applications/btop.desktop
-      rm -f $out/share/applications/cups.desktop
-      rm -f $out/share/applications/nixos-manual.desktop
-      rm -f $out/share/applications/nvim.desktop
-      rm -f $out/share/applications/yazi.desktop
-    '';
   };
 }

@@ -17,7 +17,7 @@
       mpv
       nix-inspect
       pika-backup
-      qalculate-gtk
+      qalculate-qt
       qgis
       slack
       veracrypt
