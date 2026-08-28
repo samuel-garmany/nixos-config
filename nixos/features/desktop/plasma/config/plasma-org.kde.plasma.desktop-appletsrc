@@ -16,7 +16,6 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=file:///home/user/Pictures/Wallpapers/24-08-04 12-05-45 3679.jpg
 SlidePaths=/nix/store/mmzmr765jqwm7vkxb0vkz0hm1qq4cfp6-breeze-6.7.4/share/wallpapers/,/run/current-system/sw/share/wallpapers/
 
 [Containments][2]
