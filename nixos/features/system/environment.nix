@@ -4,10 +4,9 @@
       self.nixosModules.fish
     ];
 
-    # The set of packages that should be made available to the user.
-    # This is in contrast to environment.systemPackages, which adds packages to
-    # all users.
-    users.users.${self.username}.packages = [
+    # Desktop entries are stripped in environment.extraSetup, which only runs
+    # over the system path, so these live here rather than in the user profile.
+    environment.systemPackages = [
       # sourced by config.fish
       pkgs.bat
       pkgs.eza

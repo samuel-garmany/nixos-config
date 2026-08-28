@@ -18,6 +18,14 @@
       pika-backup
     ];
 
+    environment.extraSetup = ''
+      rm -f $out/share/applications/btop.desktop
+      rm -f $out/share/applications/cups.desktop
+      rm -f $out/share/applications/nixos-manual.desktop
+      rm -f $out/share/applications/nvim.desktop
+      rm -f $out/share/applications/yazi.desktop
+    '';
+
     services.xserver.excludePackages = [pkgs.xterm];
 
     environment.gnome.excludePackages = with pkgs; [

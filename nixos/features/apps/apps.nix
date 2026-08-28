@@ -19,7 +19,6 @@
       nix-inspect
       qalculate-gtk
       qgis
-      resources
       satty
       slack
       veracrypt
