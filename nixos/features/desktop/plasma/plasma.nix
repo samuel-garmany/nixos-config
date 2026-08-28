@@ -20,13 +20,22 @@
       variant = "";
     };
 
-    environment.systemPackages = with pkgs.kdePackages; [
-      filelight
-      gwenview
-      kate
-      okular
-      plasma-vault
-    ];
+    environment.systemPackages =
+      (with pkgs.kdePackages; [
+        filelight
+        gwenview
+        kate
+        okular
+        plasma-vault
+      ])
+      # Konsole reads profiles from the konsole subdirectory of each
+      # $XDG_DATA_DIRS entry, not from the config directory.
+      ++ lib.optional (builtins.pathExists ./config/konsole) (
+        pkgs.runCommandLocal "konsole-profiles" {} ''
+          mkdir -p $out/share/konsole
+          cp ${./config/konsole}/* $out/share/konsole/
+        ''
+      );
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       discover

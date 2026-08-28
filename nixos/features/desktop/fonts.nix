@@ -6,13 +6,13 @@
   }: {
     fonts.packages = with pkgs; [
       adwaita-fonts
-      maple-mono.NF
+      nerd-fonts.jetbrains-mono
     ];
 
     # plasma6 appends Noto and Hack to these lists, so ours go first.
     fonts.fontconfig.defaultFonts = {
       sansSerif = lib.mkBefore ["Adwaita Sans"];
-      monospace = lib.mkBefore ["Maple Mono NF"];
+      monospace = lib.mkBefore ["JetBrainsMono Nerd Font"];
     };
   };
 }
