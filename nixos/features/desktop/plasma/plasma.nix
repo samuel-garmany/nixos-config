@@ -25,6 +25,7 @@
       gwenview
       kate
       okular
+      plasma-vault
     ];
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [

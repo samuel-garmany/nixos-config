@@ -20,7 +20,6 @@
       qalculate-qt
       qgis
       slack
-      veracrypt
       zoom-us
     ];
   };

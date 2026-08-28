@@ -1,0 +1,11 @@
+[Desktops]
+Id_1=3ec1dfcc-9623-4137-a89f-838ae46bf862
+Number=1
+Rows=1
+
+[Tiling][3ec1dfcc-9623-4137-a89f-838ae46bf862][dad909bc-3c4f-4a08-be8b-ed09c465267e]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Xwayland]
+Scale=1.7
