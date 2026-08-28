@@ -7,6 +7,18 @@
       enableDemoAgent = lib.mkForce true;
       enableWifi = true;
       appConfig = {
+        "org.kde.kwin_wayland" = {
+          isAllowed = true;
+          isSystem = true;
+        };
+        "org.kde.kded6" = {
+          isAllowed = true;
+          isSystem = true;
+        };
+        "org.kde.plasma.workspace" = {
+          isAllowed = true;
+          isSystem = true;
+        };
         "thunderbird" = {
           isAllowed = true;
           isSystem = false;

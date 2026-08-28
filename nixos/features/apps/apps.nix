@@ -8,7 +8,6 @@
       audacity
       blanket
       foliate
-      file-roller
       freetube
       gimp
       gnome-disk-utility
@@ -17,9 +16,9 @@
       manix
       mpv
       nix-inspect
+      pika-backup
       qalculate-gtk
       qgis
-      satty
       slack
       veracrypt
       zoom-us

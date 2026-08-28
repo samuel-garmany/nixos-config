@@ -1,20 +1,18 @@
 {
-  flake.nixosModules.fonts = {pkgs, ...}: {
+  flake.nixosModules.fonts = {
+    pkgs,
+    lib,
+    ...
+  }: {
     fonts.packages = with pkgs; [
       adwaita-fonts
       maple-mono.NF
     ];
 
+    # plasma6 appends Noto and Hack to these lists, so ours go first.
     fonts.fontconfig.defaultFonts = {
-      sansSerif = ["Adwaita Sans"];
-      monospace = ["Maple Mono NF"];
+      sansSerif = lib.mkBefore ["Adwaita Sans"];
+      monospace = lib.mkBefore ["Maple Mono NF"];
     };
-
-    programs.dconf.profiles.user.databases = [
-      {
-        lockAll = false;
-        settings."org/gnome/desktop/interface".monospace-font-name = "Maple Mono NF 12";
-      }
-    ];
   };
 }
