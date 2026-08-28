@@ -12,8 +12,8 @@
       # etc.: auto means chosen according to the desktop.
       # officecfg/registry/schema/org/openoffice/Office/Common.xcs
       #
-      # none pairs colibre with colibre_dark; niri is detected as GNOME, which
-      # pairs elementary with sifr_dark.
+      # none pairs colibre with colibre_dark; gnome pairs elementary with
+      # sifr_dark.
       # vcl/source/app/IconThemeSelector.cxx
       env.OOO_FORCE_DESKTOP = "none";
     };
