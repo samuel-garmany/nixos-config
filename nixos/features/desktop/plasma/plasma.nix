@@ -1,5 +1,9 @@
 {
-  flake.nixosModules.plasma = {pkgs, ...}: {
+  flake.nixosModules.plasma = {
+    pkgs,
+    lib,
+    ...
+  }: {
     services.desktopManager.plasma6.enable = true;
 
     # plasma6 configures sddm (breeze theme, kwin as the wayland compositor)
@@ -23,6 +27,15 @@
       elisa
       khelpcenter
     ];
+
+    # KConfig reads $XDG_CONFIG_DIRS after $XDG_CONFIG_HOME, so every file
+    # dumped into ./config becomes a default that System Settings overrides.
+    environment.etc =
+      lib.mapAttrs'
+      (name: _: lib.nameValuePair "xdg/${name}" {source = ./config + "/${name}";})
+      (lib.filterAttrs
+        (name: type: type == "regular" && !lib.hasPrefix "." name)
+        (builtins.readDir ./config));
 
     environment.extraSetup = ''
       rm -f $out/share/applications/btop.desktop
