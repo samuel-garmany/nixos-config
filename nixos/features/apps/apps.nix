@@ -6,17 +6,14 @@
       anki
       anydesk
       audacity
-      baobab
       blanket
       foliate
       file-roller
       freetube
       gimp
       gnome-disk-utility
-      gnome-text-editor
       gocryptfs
       inkscape
-      loupe
       manix
       mpv
       nix-inspect
@@ -25,7 +22,6 @@
       resources
       satty
       slack
-      snapshot
       veracrypt
       zoom-us
     ];
