@@ -24,7 +24,18 @@
         font_size = 12;
 
         # The enabled window layouts. A comma separated list of layout names.
+        # The first listed layout will be used as the startup layout.
         enabled_layouts = "splits,stack";
+
+        # The edge to show the tab bar on, top, bottom, left or right.
+        tab_bar_edge = "top";
+
+        # Number of lines of history to keep in memory for scrolling back.
+        scrollback_lines = 10000;
+
+        # Show a desktop notification when a long-running command finishes
+        # (needs shell_integration).
+        notify_on_cmd_finish = "unfocused";
 
         window_padding_width = 6;
       };

@@ -34,12 +34,10 @@
       self.nixosModules.joplin
       self.nixosModules.typesetting
       self.nixosModules.libreoffice
-      self.nixosModules.nautilus
       self.nixosModules.neovim
       self.nixosModules.nextcloudClient
       self.nixosModules.terminal
       self.nixosModules.thunderbird
-      self.nixosModules.zathura
       self.nixosModules.zotero
     ];
   };
