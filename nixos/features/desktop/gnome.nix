@@ -15,7 +15,6 @@
 
     environment.systemPackages = with pkgs; [
       gnome-firmware
-      gnome-network-displays
       pika-backup
     ];
 
@@ -24,6 +23,7 @@
     environment.gnome.excludePackages = with pkgs; [
       decibels
       epiphany
+      gnome-calculator
       gnome-calendar
       gnome-console
       gnome-contacts

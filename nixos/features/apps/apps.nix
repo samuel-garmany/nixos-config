@@ -27,7 +27,6 @@
       slack
       snapshot
       veracrypt
-      vorta
       zoom-us
     ];
   };
