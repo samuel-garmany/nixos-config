@@ -9,5 +9,12 @@
       sansSerif = ["Adwaita Sans"];
       monospace = ["Maple Mono NF"];
     };
+
+    programs.dconf.profiles.user.databases = [
+      {
+        lockAll = false;
+        settings."org/gnome/desktop/interface".monospace-font-name = "Maple Mono NF 12";
+      }
+    ];
   };
 }

@@ -1,7 +1,14 @@
-{self, ...}: {
+{
   flake.nixosModules.terminal = {pkgs, ...}: {
     environment.systemPackages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.terminal
+      pkgs.ptyxis
+    ];
+
+    programs.dconf.profiles.user.databases = [
+      {
+        lockAll = false;
+        settings."org/gnome/Ptyxis".interface-style = "system";
+      }
     ];
   };
 }
