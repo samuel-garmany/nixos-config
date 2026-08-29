@@ -15,12 +15,9 @@
               kdeglobals
               kwinrc
               kcminputrc
-              kglobalshortcutsrc
               kscreenlockerrc
               ksmserverrc
               plasmarc
-              plasma-org.kde.plasma.desktop-appletsrc
-              powermanagementprofilesrc
               breezerc
               dolphinrc
               konsolerc

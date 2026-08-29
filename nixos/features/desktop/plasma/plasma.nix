@@ -23,9 +23,6 @@
     environment.systemPackages =
       (with pkgs.kdePackages; [
         filelight
-        gwenview
-        kate
-        okular
         plasma-vault
       ])
       # Konsole reads profiles from the konsole subdirectory of each
