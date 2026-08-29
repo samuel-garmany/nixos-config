@@ -14,6 +14,13 @@
     # merkuro are separate options that stay off.
     programs.kde-pim.enable = false;
 
+    programs.firefox.policies.ExtensionSettings = {
+      "plasma-browser-integration@kde.org" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
+        installation_mode = "force_installed";
+      };
+    };
+
     # Configure keymap in X11
     services.xserver.xkb = {
       layout = "us";
