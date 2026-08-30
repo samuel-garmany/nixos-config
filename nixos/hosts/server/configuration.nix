@@ -20,7 +20,7 @@
 
       # services
       self.nixosModules.adguardHome
-      self.nixosModules.borgbackup
+      self.nixosModules.borgbackupServer
       self.nixosModules.calibreWeb
       self.nixosModules.cloudflared
       self.nixosModules.miniflux

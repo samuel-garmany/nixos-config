@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.borgbackup = {
+  flake.nixosModules.borgbackupServer = {
     # Serve BorgBackup repositories to given public SSH keys, restricting their
     # access to the repository only. Clients do not need to specify the absolute
     # path when accessing the repository, i.e. `user@machine:.` is enough.

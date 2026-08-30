@@ -65,15 +65,22 @@ book downloads.
 
 ## Borg
 
-Pika Backup on each device points at `/mnt/data/borgbackup`, served over SSH to
-the keys in `nixos/base/user.nix`. `allowSubRepos` gives every device its own
-repository underneath: Borg holds an exclusive lock on a repository while
-creating archives, and one modified from more than one place rebuilds its cache
-each time.
+`borgbackupServer` serves `/mnt/data/borgbackup` over SSH to the keys in
+`nixos/base/user.nix`. `allowSubRepos` gives every device its own repository
+underneath, because Borg holds an exclusive lock on a repository while creating
+archives, and one modified from more than one place rebuilds its cache each time.
+Pika Backup on each device schedules its own; its config is
+`~/.config/pika-backup/backup.json`, with history and schedule state in separate
+files beside it. A new device needs its key in `nixos/base/user.nix`.
 
 ```
 ssh://borg@server.tail5c3838.ts.net/./<device>
 ```
+
+Delete Old Archives runs compact after every prune, so pruning reclaims space.
+Nothing checks the repository on a schedule; run Archives Integrity Check from
+the archives page now and then. `repokey` keeps the key in the repository, so the
+passphrase in the keyring is the only way back to the archives.
 
 ## TPM
 
