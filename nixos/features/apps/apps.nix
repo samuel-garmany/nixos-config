@@ -16,7 +16,7 @@
       manix
       mpv
       nix-inspect
-      pika-backup
+      vorta
       qalculate-qt
       qgis
       slack
