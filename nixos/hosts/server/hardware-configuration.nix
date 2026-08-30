@@ -65,6 +65,7 @@
     # Without this, nofail lets these start before the SSD is mounted. See the
     # README. postgresql is absent because its module already sets it.
     systemd.services = {
+      borgbackup-repo-borgbackup.unitConfig.RequiresMountsFor = "/mnt/data";
       vaultwarden.unitConfig.RequiresMountsFor = "/var/lib/vaultwarden";
       backup-vaultwarden.unitConfig.RequiresMountsFor = "/mnt/data";
       postgresqlBackup.unitConfig.RequiresMountsFor = "/mnt/data";

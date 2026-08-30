@@ -9,7 +9,7 @@ and a host is a list of the ones it wants.
 | --- | --- | --- |
 | `desktop` | Intel CPU, AMD GPU | niri, noctalia, Secure Boot via lanzaboote |
 | `laptop` | Framework 13 AMD | the same desktop trimmed down |
-| `server` | Raspberry Pi 4B, aarch64 | Nextcloud, Vaultwarden, Calibre-Web, Miniflux, AdGuard Home, cloudflared |
+| `server` | Raspberry Pi 4B, aarch64 | Nextcloud, Vaultwarden, Calibre-Web, Miniflux, AdGuard Home, Borg, cloudflared |
 
 ```
 nixos-rebuild switch --flake .#<hostname>
@@ -62,6 +62,18 @@ nginx fronts it because `cps/reverseproxy.py` reads `X-Scheme` rather than
 `X-Forwarded-Host` is set. Unproxied, `cps/kobo.py` builds book download URLs
 from `request.scheme` and the Server External Port instead of `url_for`, and no
 book downloads.
+
+## Borg
+
+Pika Backup on each device points at `/mnt/data/borgbackup`, served over SSH to
+the keys in `nixos/base/user.nix`. `allowSubRepos` gives every device its own
+repository underneath: Borg holds an exclusive lock on a repository while
+creating archives, and one modified from more than one place rebuilds its cache
+each time.
+
+```
+ssh://borg@server.tail5c3838.ts.net/./<device>
+```
 
 ## TPM
 
