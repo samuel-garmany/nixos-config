@@ -1,23 +1,19 @@
 {
   flake.nixosModules.geolocation = {lib, ...}: {
-    # Enable automatic timezone and location services for weather and Night Light (Wi-Fi & IP fallback)
+    # Enable automatic timezone and location services for weather and Night Color (Wi-Fi & IP fallback)
     services.automatic-timezoned.enable = true;
     services.geoclue2 = {
       enable = true;
       enableDemoAgent = lib.mkForce true;
       enableWifi = true;
       appConfig = {
-        "org.kde.kwin_wayland" = {
+        "gammastep" = {
           isAllowed = true;
-          isSystem = true;
+          isSystem = false;
         };
-        "org.kde.kded6" = {
+        "redshift" = {
           isAllowed = true;
-          isSystem = true;
-        };
-        "org.kde.plasma.workspace" = {
-          isAllowed = true;
-          isSystem = true;
+          isSystem = false;
         };
         "thunderbird" = {
           isAllowed = true;

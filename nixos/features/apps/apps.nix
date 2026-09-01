@@ -6,20 +6,28 @@
       anki
       anydesk
       audacity
+      baobab
       blanket
       foliate
+      file-roller
       freetube
       gimp
       gnome-disk-utility
+      gnome-text-editor
       gocryptfs
       inkscape
+      loupe
       manix
       mpv
       nix-inspect
-      vorta
-      qalculate-qt
+      qalculate-gtk
       qgis
+      resources
+      satty
       slack
+      snapshot
+      veracrypt
+      vorta
       zoom-us
     ];
   };

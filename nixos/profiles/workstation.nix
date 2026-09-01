@@ -20,8 +20,12 @@
       self.nixosModules.audio
       self.nixosModules.fonts
       self.nixosModules.geolocation
-      self.nixosModules.plasma
+      self.nixosModules.gtk
+      self.nixosModules.idle
+      self.nixosModules.login
+      self.nixosModules.niri
       self.nixosModules.printing
+      self.nixosModules.qt
 
       # apps
       self.nixosModules.apps
@@ -33,9 +37,11 @@
       self.nixosModules.joplin
       self.nixosModules.typesetting
       self.nixosModules.libreoffice
+      self.nixosModules.nautilus
       self.nixosModules.neovim
       self.nixosModules.nextcloudClient
       self.nixosModules.thunderbird
+      self.nixosModules.zathura
       self.nixosModules.zotero
     ];
   };

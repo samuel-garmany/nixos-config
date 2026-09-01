@@ -1,18 +1,13 @@
 {
-  flake.nixosModules.fonts = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  flake.nixosModules.fonts = {pkgs, ...}: {
     fonts.packages = with pkgs; [
       adwaita-fonts
-      nerd-fonts.jetbrains-mono
+      maple-mono.NF
     ];
 
-    # plasma6 appends Noto and Hack to these lists, so ours go first.
     fonts.fontconfig.defaultFonts = {
-      sansSerif = lib.mkBefore ["Adwaita Sans"];
-      monospace = lib.mkBefore ["JetBrainsMono Nerd Font"];
+      sansSerif = ["Adwaita Sans"];
+      monospace = ["Maple Mono NF"];
     };
   };
 }
