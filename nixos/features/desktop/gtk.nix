@@ -6,6 +6,7 @@
       [Settings]
       gtk-icon-theme-name = ${icon-theme-name}
       gtk-cursor-theme-name = ${icon-theme-name}
+      gtk-decoration-layout = appmenu:close
     '';
   in {
     # nixos/modules/services/desktop-managers/pantheon.nix:
