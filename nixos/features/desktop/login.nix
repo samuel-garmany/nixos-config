@@ -12,6 +12,7 @@
     };
 
     security.pam.services.login.fprintAuth = false;
+    security.pam.services.noctalia = {};
 
     # Note that to start plasma-polkit-agent with systemd on Fedora, you'll need
     # to override its systemd service to add the correct dependency.

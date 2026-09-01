@@ -99,7 +99,8 @@ back. Slot 0 still works; re-enroll with `--wipe-slot=tpm2` added.
 
 greetd unlocks the login keyring with the account password. If they diverge,
 GNOME Keyring prompts separately after login. Fingerprint is off for login so
-there is always a password for it to unlock with.
+there is always a password for it to unlock with; the lock screen has its own
+PAM service and keeps it.
 
 ```
 rm ~/.local/share/keyrings/login.keyring   # then log in again
