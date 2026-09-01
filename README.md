@@ -98,7 +98,8 @@ back. Slot 0 still works; re-enroll with `--wipe-slot=tpm2` added.
 ## Keyring
 
 greetd unlocks the login keyring with the account password. If they diverge,
-GNOME Keyring prompts separately after login.
+GNOME Keyring prompts separately after login. Fingerprint is off for login so
+there is always a password for it to unlock with.
 
 ```
 rm ~/.local/share/keyrings/login.keyring   # then log in again
@@ -106,9 +107,11 @@ rm ~/.local/share/keyrings/login.keyring   # then log in again
 
 ## Polkit agent
 
-mate-polkit is the agent because both machines have fingerprint readers. Switch
-to `security.soteria.enable` once soteria does fingerprint auth:
-https://github.com/ImVaskel/soteria
+plasma-polkit-agent is what the niri wiki recommends, and its unit ships with the
+package, so the flake adds only After=graphical-session.target. The package goes
+in environment.systemPackages rather than systemd.packages, which covers system
+units only.
+https://github.com/YaLTeR/niri/wiki/Important-Software
 
 ## Noctalia
 
