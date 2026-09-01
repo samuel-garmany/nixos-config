@@ -7,7 +7,7 @@ and a host is a list of the ones it wants.
 
 | host | hardware | role |
 | --- | --- | --- |
-| `desktop` | Intel CPU, AMD GPU | niri, noctalia, Secure Boot via lanzaboote |
+| `desktop` | Intel CPU, AMD GPU | KDE Plasma, Secure Boot via lanzaboote |
 | `laptop` | Framework 13 AMD | the same desktop trimmed down |
 | `server` | Raspberry Pi 4B, aarch64 | Nextcloud, Vaultwarden, Calibre-Web, Miniflux, AdGuard Home, Borg, cloudflared |
 
@@ -97,25 +97,22 @@ back. Slot 0 still works; re-enroll with `--wipe-slot=tpm2` added.
 
 ## Keyring
 
-greetd unlocks the login keyring with the account password. If they diverge,
-GNOME Keyring prompts separately after login.
+sddm unlocks the KDE wallet with the account password: its PAM service substacks
+login, which carries pam_kwallet5. Fingerprint is off for login so there is
+always a password for it to unlock with.
 
 ```
-rm ~/.local/share/keyrings/login.keyring   # then log in again
+rm ~/.local/share/kwalletd/kdewallet.kwl   # then log in again
 ```
 
-## Polkit agent
+## Plasma
 
-mate-polkit is the agent because both machines have fingerprint readers. Switch
-to `security.soteria.enable` once soteria does fingerprint auth:
-https://github.com/ImVaskel/soteria
-
-## Noctalia
-
-Settings come from the store; the GUI only changes the running session.
+KConfig reads `$XDG_CONFIG_DIRS` after `$XDG_CONFIG_HOME`, so the files in
+`nixos/features/desktop/plasma/config` are defaults that System Settings
+overrides. `dumpPlasma` copies the live ones back, dropping `$HOME` paths.
 
 ```
-noctalia-shell ipc call state all | jq .settings > wrappedPrograms/noctalia/settings.json
+nix run .#dumpPlasma
 ```
 
 ## uBlock Origin
@@ -142,7 +139,7 @@ direnv allow
 
 ## Long-running jobs
 
-swayidle suspends after 30 idle minutes.
+powerdevil suspends on idle at its defaults.
 
 ```
 systemd-inhibit --what=idle:sleep --why="<reason>" <command>
