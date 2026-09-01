@@ -20,10 +20,7 @@
         terminal.shell.program = config.shell;
       }
       // {
-        font = {
-          normal.family = "Maple Mono NF";
-          size = 12;
-        };
+        #font.size = 12;
 
         general.import = ["~/.config/alacritty/themes/noctalia.toml"];
 
