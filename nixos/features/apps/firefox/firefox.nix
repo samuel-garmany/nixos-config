@@ -90,11 +90,11 @@
           };
         };
 
-        "3rdparty".Extensions = {
-          "uBlock0@raymondhill.net" = {
-            adminSettings = builtins.readFile ./ublock.json;
-          };
-        };
+        #"3rdparty".Extensions = {
+        #"uBlock0@raymondhill.net" = {
+        #adminSettings = builtins.readFile ./ublock.json;
+        #};
+        #};
       };
     };
   };
