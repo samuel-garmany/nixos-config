@@ -20,8 +20,6 @@
         terminal.shell.program = config.shell;
       }
       // {
-        #font.size = 12;
-
         general.import = ["~/.config/alacritty/themes/noctalia.toml"];
 
         window = {
