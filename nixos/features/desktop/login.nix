@@ -18,20 +18,16 @@
     systemd.user.services.polkit-mate-authentication-agent-1 = {
       description = "PolicyKit Authentication Agent for the MATE Desktop";
 
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
       after = ["graphical-session.target"];
+      wantedBy = ["graphical-session.target"];
 
       serviceConfig = {
         ExecStart = "${pkgs.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
-        Type = "simple";
+        Slice = "session.slice";
+        TimeoutStopSec = "5sec";
         Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
       };
     };
-
-    security.pam.services.noctalia = {};
-    security.pam.services.passwd.enableGnomeKeyring = true;
   };
 }

@@ -20,6 +20,7 @@
       manix
       mpv
       nix-inspect
+      pika-backup
       qalculate-gtk
       qgis
       resources
@@ -27,7 +28,6 @@
       slack
       snapshot
       veracrypt
-      vorta
       zoom-us
     ];
   };
