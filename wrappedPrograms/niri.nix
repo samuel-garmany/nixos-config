@@ -37,9 +37,6 @@
         touchpad = {
           tap = _: {};
           natural-scroll = _: {};
-
-          # Scales the scrolling speed by this value.
-          scroll-factor = 0.5;
         };
       };
 
