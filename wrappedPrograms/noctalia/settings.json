@@ -162,7 +162,7 @@
     "telemetryEnabled": false,
     "enableLockScreenCountdown": true,
     "lockScreenCountdownDuration": 10000,
-    "autoStartAuth": true,
+    "autoStartAuth": false,
     "allowPasswordWithFprintd": true,
     "clockStyle": "custom",
     "clockFormat": "HH\\nmm",
