@@ -6,7 +6,6 @@
       [Settings]
       gtk-icon-theme-name = ${icon-theme-name}
       gtk-cursor-theme-name = ${icon-theme-name}
-      gtk-decoration-layout = appmenu:close
     '';
   in {
     # nixos/modules/services/desktop-managers/pantheon.nix:
@@ -22,6 +21,10 @@
       {
         lockAll = false;
         settings."org/gnome/desktop/interface".icon-theme = icon-theme-name;
+        settings."org/gnome/desktop/wm/preferences".button-layout = "appmenu:close";
+
+        # A list of dconf keys to be lockdown.
+        locks = ["/org/gnome/desktop/wm/preferences/button-layout"];
       }
     ];
 
