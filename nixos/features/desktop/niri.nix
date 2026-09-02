@@ -20,14 +20,14 @@
     ];
 
     # Terminal=true entries go to the first known_terminals hit on PATH, which
-    # alacritty is not in and xdg-terminal-exec heads.
+    # ghostty is not in and xdg-terminal-exec heads.
     # gio/gdesktopappinfo.c, prepend_terminal_to_vector
     #
     # Preferred terminals are configured by listing them in config files named
     # xdg-terminals.list placed in XDG Config hierarchy.
     # xdg-terminal-exec(1)
     environment.etc."xdg/xdg-terminals.list".text = ''
-      Alacritty.desktop
+      com.mitchellh.ghostty.desktop
     '';
 
     # Restarted on failure so the lock screen, which idle.nix reaches over IPC,

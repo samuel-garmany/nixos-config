@@ -302,7 +302,7 @@
     "position": "center",
     "pinnedApps": [],
     "sortByMostUsed": true,
-    "terminalCommand": "alacritty -e",
+    "terminalCommand": "ghostty -e",
     "customLaunchPrefixEnabled": false,
     "customLaunchPrefix": "",
     "viewMode": "list",
@@ -593,7 +593,7 @@
       },
       {
         "enabled": true,
-        "id": "alacritty"
+        "id": "ghostty"
       },
       {
         "enabled": true,
