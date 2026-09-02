@@ -41,8 +41,8 @@
         # };
         Preferences = {
           # Vertical Tabs
-          "sidebar.verticalTabs" = true;
-          "sidebar.visibility" = "expand-on-hover";
+          #"sidebar.verticalTabs" = true;
+          #"sidebar.visibility" = "expand-on-hover";
 
           # Restore session
           "browser.startup.page" = 3;
