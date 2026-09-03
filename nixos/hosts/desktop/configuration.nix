@@ -14,6 +14,7 @@
       self.nixosModules.workstation
 
       self.nixosModules.gaming
+      self.nixosModules.noctaliaSteam
 
       inputs.nixos-hardware.nixosModules.common-cpu-intel
       inputs.nixos-hardware.nixosModules.common-pc-ssd

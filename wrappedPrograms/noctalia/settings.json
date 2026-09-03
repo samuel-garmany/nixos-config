@@ -577,7 +577,7 @@
     "schedulingMode": "location",
     "manualSunrise": "06:30",
     "manualSunset": "18:30",
-    "generationMethod": "faithful",
+    "generationMethod": "content",
     "monitorForColors": "",
     "syncGsettings": true
   },
@@ -617,7 +617,11 @@
       },
       {
         "enabled": true,
-        "id": "zathura"
+        "id": "pywalfox"
+      },
+      {
+        "enabled": true,
+        "id": "steam"
       }
     ],
     "enableUserTheming": false

@@ -42,6 +42,11 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    # Open-source modding framework for creating and managing Steam Client
+    # themes and plugins.
+    # https://github.com/SteamClientHomebrew/Millennium
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   };
 
   outputs = inputs:

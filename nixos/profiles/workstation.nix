@@ -24,6 +24,7 @@
       self.nixosModules.idle
       self.nixosModules.login
       self.nixosModules.niri
+      self.nixosModules.noctaliaFirefox
       self.nixosModules.printing
       self.nixosModules.qt
 

@@ -188,3 +188,13 @@ nmcli connection modify "eduroam [<uuid>]" 802-11-wireless.cloned-mac-address pe
 ```
 
 Survives rebuilds, not reinstalls. SecureW2 certificates expire. Probably could be made declarative with sops but for a temporary keys seemed like a hassle.
+
+## Steam theming
+
+Noctalia's steam template writes into a Material theme installed by Millennium,
+which `noctaliaSteam` sets as `programs.steam.package`. Install the theme from
+Steam -> Millennium -> Themes, then set its Color source to Matugen.
+
+```
+~/.steam/steam/steamui/skins/Material-Theme/css/main/colors/matugen.css
+```
