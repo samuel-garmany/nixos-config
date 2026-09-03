@@ -41,7 +41,6 @@
       self.nixosModules.neovim
       self.nixosModules.nextcloudClient
       self.nixosModules.thunderbird
-      self.nixosModules.zathura
       self.nixosModules.zotero
     ];
   };

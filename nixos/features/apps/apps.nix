@@ -20,6 +20,7 @@
       manix
       mpv
       nix-inspect
+      papers
       pika-backup
       qalculate-gtk
       qgis
