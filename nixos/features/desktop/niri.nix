@@ -5,6 +5,9 @@
     programs.niri.enable = true;
     programs.niri.package = selfpkgs.niri;
 
+    # Needed for JChemPaint
+    environment.sessionVariables._JAVA_AWT_WM_NONREPARENTING = "1";
+
     environment.systemPackages = [
       selfpkgs.terminal
       selfpkgs.noctalia-shell
