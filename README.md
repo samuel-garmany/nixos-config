@@ -49,13 +49,9 @@ tailscale serve --https=<port> off
 
 ## Kobo sync
 
-Enable it under Admin -> Feature Configuration, then generate a token from the
-user's profile. Calibre-Web builds the endpoint from the URL it was reached on,
-so open it through the public hostname, not localhost.
-
-```
-api_endpoint=<url>   # add to .kobo/Kobo/Kobo eReader.conf on the device
-```
+Calibre-Web builds the endpoint from the URL it was reached on, so open it
+through the public hostname, not localhost.
+https://github.com/janeczku/calibre-web/wiki/Kobo-Integration
 
 nginx fronts it because `cps/reverseproxy.py` reads `X-Scheme` rather than
 `X-Forwarded-Proto`, and counts a request as proxied only when `X-Script-Name` or
@@ -191,10 +187,6 @@ Survives rebuilds, not reinstalls. SecureW2 certificates expire. Probably could 
 
 ## Steam theming
 
-Noctalia's steam template writes into a Material theme installed by Millennium,
-which `noctaliaSteam` sets as `programs.steam.package`. Install the theme from
-Steam -> Millennium -> Themes, then set its Color source to Matugen.
-
-```
-~/.steam/steam/steamui/skins/Material-Theme/css/main/colors/matugen.css
-```
+`noctaliaSteam` sets `programs.steam.package` to a Millennium-wrapped Steam; the
+theme and its Matugen color source are set up in Steam.
+https://docs.noctalia.dev/noctalia/templates/community/steam/
