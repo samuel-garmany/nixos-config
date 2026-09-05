@@ -33,12 +33,6 @@
 
     nvf.url = "github:notashelf/nvf";
 
-    # Not in nixpkgs; `nix flake update r-nvim` bumps it, the lock records the rev
-    r-nvim = {
-      url = "github:R-nvim/R.nvim";
-      flake = false;
-    };
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";

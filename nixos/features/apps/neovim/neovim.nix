@@ -20,6 +20,8 @@
           viAlias = true;
           vimAlias = true;
 
+          extraPackages = [pkgs.gnumake pkgs.gcc];
+
           # Set the case sensitivity of search
           searchCase = "smart";
 
@@ -81,9 +83,27 @@
               "adafruit:samd:adafruit_feather_m0"
             ];
 
+            # :h R-language-server
+            servers.r-languageserver.cmd_env.R_PROFILE_USER = toString (pkgs.writeText "Rprofile" ''
+              options(
+                  languageserver.server_capabilities = list(
+                      hoverProvider = FALSE,
+                      signatureHelpProvider = FALSE,
+                      completionProvider = FALSE,
+                      completionItemResolve = FALSE,
+                      definitionProvider = FALSE,
+                      referencesProvider = FALSE,
+                      implementationProvider = FALSE,
+                      documentHighlightProvider = FALSE,
+                      documentSymbolProvider = FALSE,
+                      workspaceSymbolProvider = FALSE,
+                      renameProvider = FALSE
+                  )
+              )
+            '');
+
             # nvim-lspconfig, also enabled automatically
             lspconfig.enable = true;
-            lspconfig.sources.r_language_server = "vim.lsp.enable('r_language_server')";
             lspconfig.sources.ltex = ''
               vim.lsp.config('ltex', {
                 cmd = {"${lib.getExe pkgs.ltex-ls}"},
@@ -142,7 +162,6 @@
             arduino.enable = true;
             r = {
               enable = true;
-              lsp.enable = false;
               format.enable = false;
             };
             typst.enable = true;
@@ -384,12 +403,8 @@
               setup = "require('typst-preview').setup()";
             };
             "R.nvim" = {
-              package = pkgs.vimUtils.buildVimPlugin {
-                name = "R.nvim";
-                src = inputs.r-nvim;
-                buildPhase = ''
-                  make -C rnvimserver
-                '';
+              package = pkgs.vimPlugins.R-nvim.overrideAttrs {
+                buildPhase = "make -C rnvimserver";
               };
               setup = ''
                 if vim.fn.executable("R") == 1 then

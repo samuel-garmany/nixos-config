@@ -358,22 +358,6 @@
         "type": "github"
       }
     },
-    "r-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1787237712,
-        "narHash": "sha256-0rSJlphOC8x01e+jG0y7YeTgRk2wPUwdqdVT2Pw4xQ8=",
-        "owner": "R-nvim",
-        "repo": "R.nvim",
-        "rev": "ef081566170e20d536bfaab168eb8841c0753b1c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "R-nvim",
-        "repo": "R.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -385,7 +369,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nvf": "nvf",
-        "r-nvim": "r-nvim",
         "sops-nix": "sops-nix",
         "wrapper-modules": "wrapper-modules",
         "wrappers": "wrappers"

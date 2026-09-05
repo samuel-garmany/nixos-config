@@ -2,38 +2,14 @@
   perSystem = {pkgs, ...}: {
     devShells.r = pkgs.mkShell {
       packages = with pkgs; [
-        # Core R and Pre-compiled CRAN Packages
         R
-        rPackages.languageserver
         rPackages.styler
         rPackages.rmarkdown
         rPackages.knitr
         rPackages.tidyverse
         rPackages.lubridate
 
-        # Document Conversion Engine
         pandoc
-
-        # LSP Tools for Rmd
-        marksman
-
-        # Build tools
-        pkg-config
-        cmake
-        gnumake
-        gcc
-
-        # System libraries for local R packages
-        curl
-        openssl
-        libxml2
-        libuv
-        fontconfig
-        fribidi
-        harfbuzz
-        libtiff
-        libjpeg
-        libwebp
       ];
 
       shellHook = ''
