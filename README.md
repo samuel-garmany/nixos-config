@@ -154,36 +154,35 @@ own.
    sudo virsh net-autostart default
    ```
 
-2. Fetch the VirtIO drivers, whose ISO nixpkgs already pins. Windows itself
-   comes from https://www.microsoft.com/software-download/windows11
+2. New Virtual Machine, point it at a Windows ISO and let it detect the OS.
+   Everything a Windows guest needs follows from that.
+   https://www.microsoft.com/software-download/windows11
+
+3. Fetch the VirtIO drivers, whose ISO nixpkgs already pins.
 
    ```
    nix build -o virtio-win.iso nixpkgs#virtio-win.src
    ```
 
-3. New Virtual Machine, point it at the Windows ISO and let it detect the OS.
-   Everything a Windows guest needs follows from that.
-
-4. As detected it installs with no extra drivers. Switching the disk or NIC to
-   VirtIO means loading that driver from the second CD during setup, out of
-   `amd64\w11\`.
+4. Point the installed guest's CDROM at it and run `virtio-win-guest-tools.exe`
+   for the SPICE agent, shared clipboard and display resizing.
    https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/
 
-5. In the installed guest run `virtio-win-guest-tools.exe` off that CD for the
-   SPICE agent, shared clipboard and display resizing.
-
-6. To share a host directory, add a Filesystem device to the guest. Windows
+5. To share a host directory, add a Filesystem device to the guest. Windows
    needs WinFsp for it, alongside viofs from the same CD.
    https://winfsp.dev
 
-7. Remove both CDROM devices from the guest, then drop the ISOs. The domain XML
-   holds the store path of virtio-win.iso but is not a GC root, so collecting
-   garbage while it is still attached leaves a guest that will not start.
+6. Remove the CDROM device, then drop the ISOs. The domain XML holds the store
+   path of virtio-win.iso but is not a GC root, so collecting garbage while it
+   is still attached leaves a guest that will not start.
 
    ```
    rm virtio-win.iso <windows>.iso
    nix-collect-garbage
    ```
+
+A VirtIO disk and NIC are faster, but have to be loaded from that CD during
+setup instead.
 
 ## Long-running jobs
 
