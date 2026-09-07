@@ -48,7 +48,7 @@
     time.timeZone = "America/Denver";
 
     # journald cannot move to the SSD, which is unlocked long after it starts.
-    services.journald.extraConfig = "SystemMaxUse=200M";
+    services.journald.settings.Journal.SystemMaxUse = "200M";
 
     swapDevices = [
       {

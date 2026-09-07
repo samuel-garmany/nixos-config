@@ -14,6 +14,7 @@
       self.nixosModules.powerProfilesDaemon
       self.nixosModules.security
       self.nixosModules.tailscale
+      self.nixosModules.virtualisation
       self.nixosModules.yubikey
 
       # desktop

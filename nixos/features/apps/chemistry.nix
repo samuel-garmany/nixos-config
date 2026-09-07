@@ -21,7 +21,6 @@
 
   flake.nixosModules.chemistry = {pkgs, ...}: {
     environment.systemPackages = [
-      pkgs.jchempaint
       self.packages.${pkgs.stdenv.hostPlatform.system}.mnova
     ];
   };

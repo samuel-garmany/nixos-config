@@ -140,6 +140,51 @@ echo 'use flake ~/nixos-config#<shell>' > .envrc
 direnv allow
 ```
 
+## Virtual machines
+
+Guests live in `/var/lib/libvirt`, not in the flake, so each machine builds its
+own.
+
+1. Check the default NAT network is running. `virtualisation.libvirtd` has no
+   option to autostart it.
+
+   ```
+   virsh -c qemu:///system net-list --all
+   sudo virsh net-start default          # if it is not active
+   sudo virsh net-autostart default
+   ```
+
+2. Fetch the VirtIO drivers, whose ISO nixpkgs already pins. Windows itself
+   comes from https://www.microsoft.com/software-download/windows11
+
+   ```
+   nix build -o virtio-win.iso nixpkgs#virtio-win.src
+   ```
+
+3. New Virtual Machine, point it at the Windows ISO and let it detect the OS.
+   Everything a Windows guest needs follows from that.
+
+4. As detected it installs with no extra drivers. Switching the disk or NIC to
+   VirtIO means loading that driver from the second CD during setup, out of
+   `amd64\w11\`.
+   https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/
+
+5. In the installed guest run `virtio-win-guest-tools.exe` off that CD for the
+   SPICE agent, shared clipboard and display resizing.
+
+6. To share a host directory, add a Filesystem device to the guest. Windows
+   needs WinFsp for it, alongside viofs from the same CD.
+   https://winfsp.dev
+
+7. Remove both CDROM devices from the guest, then drop the ISOs. The domain XML
+   holds the store path of virtio-win.iso but is not a GC root, so collecting
+   garbage while it is still attached leaves a guest that will not start.
+
+   ```
+   rm virtio-win.iso <windows>.iso
+   nix-collect-garbage
+   ```
+
 ## Long-running jobs
 
 swayidle suspends after 30 idle minutes.
