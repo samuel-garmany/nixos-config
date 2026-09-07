@@ -188,11 +188,6 @@
             lualine = {
               enable = true;
               integrations.breadcrumbs.navbuddy.enable = true;
-              setupOpts = {
-                sections = {
-                  lualine_z = {};
-                };
-              };
             };
           };
 
