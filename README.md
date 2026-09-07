@@ -164,15 +164,9 @@ own.
    nix build -o ~/virtio-win.iso nixpkgs#virtio-win.src
    ```
 
-4. Swap the running guest's CDROM to it, then run `virtio-win-guest-tools.exe`
-   off that drive for the SPICE agent, shared clipboard and display resizing.
-   `domblklist` names the CDROM; it is the target whose source is the Windows
-   ISO.
-
-   ```
-   virsh -c qemu:///system domblklist <domain>
-   virsh -c qemu:///system change-media <domain> <target> ~/virtio-win.iso --update --live
-   ```
+4. Swap the running guest's CDROM to it under Details, the CDROM device, Source
+   path, Browse, Browse Local, Apply. Then run `virtio-win-guest-tools.exe` off
+   that drive for the SPICE agent, shared clipboard and display resizing.
    https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/
 
 5. To share a host directory, add a Filesystem device to the guest. Windows
