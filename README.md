@@ -161,11 +161,18 @@ own.
 3. Fetch the VirtIO drivers, whose ISO nixpkgs already pins.
 
    ```
-   nix build -o virtio-win.iso nixpkgs#virtio-win.src
+   nix build -o ~/virtio-win.iso nixpkgs#virtio-win.src
    ```
 
-4. Point the installed guest's CDROM at it and run `virtio-win-guest-tools.exe`
-   for the SPICE agent, shared clipboard and display resizing.
+4. Swap the running guest's CDROM to it, then run `virtio-win-guest-tools.exe`
+   off that drive for the SPICE agent, shared clipboard and display resizing.
+   `domblklist` names the CDROM; it is the target whose source is the Windows
+   ISO.
+
+   ```
+   virsh -c qemu:///system domblklist <domain>
+   virsh -c qemu:///system change-media <domain> <target> ~/virtio-win.iso --update --live
+   ```
    https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/
 
 5. To share a host directory, add a Filesystem device to the guest. Windows
@@ -177,7 +184,7 @@ own.
    is still attached leaves a guest that will not start.
 
    ```
-   rm virtio-win.iso <windows>.iso
+   rm ~/virtio-win.iso <windows>.iso
    nix-collect-garbage
    ```
 
