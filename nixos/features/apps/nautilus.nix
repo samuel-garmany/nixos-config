@@ -1,5 +1,9 @@
 {
   flake.nixosModules.nautilus = {pkgs, ...}: {
+    xdg.mime.defaultApplications = {
+      "inode/directory" = "org.gnome.Nautilus.desktop";
+    };
+
     environment.systemPackages = [
       pkgs.nautilus
     ];

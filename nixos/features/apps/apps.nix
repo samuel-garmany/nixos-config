@@ -2,6 +2,11 @@
   flake.nixosModules.apps = {pkgs, ...}: {
     programs.obs-studio.enable = true;
 
+    xdg.mime.defaultApplications = {
+      "image/svg+xml" = "org.inkscape.Inkscape.desktop";
+      "text/plain" = "org.gnome.TextEditor.desktop";
+    };
+
     environment.systemPackages = with pkgs; [
       anki
       anydesk
