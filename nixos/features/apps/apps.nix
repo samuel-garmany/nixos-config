@@ -22,6 +22,7 @@
       file-roller
       freetube
       gimp
+      gnome-characters
       gnome-disk-utility
       gnome-text-editor
       gocryptfs
