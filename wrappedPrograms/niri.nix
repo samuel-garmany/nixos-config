@@ -1,24 +1,27 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{self, ...}: {
   # Transcription of niri's shipped default config
   # (resources/default-config.kdl) into the wrapper's attrset form.
   # Check the wiki for a full description of the configuration:
   # https://niri-wm.github.io/niri/Configuration:-Introduction
-  flake.wrappersModules.niri = {
+  flake.wrappers.niri = {
     config,
     lib,
+    pkgs,
+    wlib,
     ...
   }: {
+    imports = [wlib.wrapperModules.niri];
+
     options.terminal = lib.mkOption {
       type = lib.types.str;
-      default = "alacritty";
+      default = lib.getExe (self.wrappers.terminal.wrap {inherit pkgs;});
     };
 
+    # Required when used as a session package (services.displayManager).
+    config.passthru.providedSessions = pkgs.niri.passthru.providedSessions;
+
     config.settings = let
-      noctalia = lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.noctalia-shell;
+      noctalia = lib.getExe (self.wrappers.noctalia-shell.wrap {inherit pkgs;});
     in {
       # Input device configuration.
       # Find the full list of options on the wiki:
@@ -446,21 +449,6 @@
       extraConfig = ''
         include optional=true "~/.config/niri/noctalia.kdl"
       '';
-    };
-  };
-
-  perSystem = {
-    pkgs,
-    self',
-    lib,
-    ...
-  }: {
-    packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
-      inherit pkgs;
-      imports = [self.wrappersModules.niri];
-      terminal = lib.getExe self'.packages.terminal;
-      # Required when used as a session package (services.displayManager).
-      passthru.providedSessions = pkgs.niri.passthru.providedSessions;
     };
   };
 }

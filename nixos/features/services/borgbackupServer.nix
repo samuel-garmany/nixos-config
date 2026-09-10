@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.borgbackupServer = {
+  flake.nixosModules.borgbackupServer = {config, ...}: {
+    # /mnt/data is nofail, so the unit has to wait for the mount itself.
+    systemd.services.borgbackup-repo-borgbackup.unitConfig.RequiresMountsFor =
+      config.services.borgbackup.repos.borgbackup.path;
+
     # Serve BorgBackup repositories to given public SSH keys, restricting their
     # access to the repository only. Clients do not need to specify the absolute
     # path when accessing the repository, i.e. `user@machine:.` is enough.

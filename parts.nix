@@ -1,16 +1,7 @@
-{
-  inputs,
-  lib,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.wrapper-modules.flakeModules.wrappers
   ];
-
-  options.flake.wrappersModules = lib.mkOption {
-    type = lib.types.lazyAttrsOf lib.types.deferredModule;
-    default = {};
-  };
 
   config = {
     systems = [

@@ -17,6 +17,8 @@
 
         PasswordManagerEnabled = false;
 
+        DontCheckDefaultBrowser = true;
+
         SearchEngines = {
           Default = "Brave";
           Add = [

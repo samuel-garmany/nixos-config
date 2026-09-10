@@ -3,8 +3,12 @@
     programs.obs-studio.enable = true;
 
     xdg.mime.defaultApplications = {
-      "image/svg+xml" = "org.inkscape.Inkscape.desktop";
+      "application/pdf" = "org.gnome.Papers.desktop";
+      "application/zip" = "org.gnome.FileRoller.desktop";
+      "audio/*" = "io.github.diegopvlk.Cine.desktop";
+      "image/*" = "org.gnome.Loupe.desktop";
       "text/plain" = "org.gnome.TextEditor.desktop";
+      "video/*" = "io.github.diegopvlk.Cine.desktop";
     };
 
     environment.systemPackages = with pkgs; [
@@ -13,6 +17,7 @@
       audacity
       baobab
       blanket
+      cine
       foliate
       file-roller
       freetube
@@ -23,7 +28,6 @@
       inkscape
       loupe
       manix
-      mpv
       nix-inspect
       papers
       pika-backup

@@ -23,7 +23,9 @@
     };
 
     # openFirewall does not open the port needed to access the DNS resolver.
-    networking.firewall.allowedTCPPorts = [53];
-    networking.firewall.allowedUDPPorts = [53];
+    networking.firewall.interfaces."tailscale0" = {
+      allowedTCPPorts = [53];
+      allowedUDPPorts = [53];
+    };
   };
 }

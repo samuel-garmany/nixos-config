@@ -130,6 +130,12 @@ jq 'del(.timeStamp, .version, .hiddenSettings)' (ls -t ~/Downloads/my-ublock-bac
 `timeStamp`, `version` and `hiddenSettings` are in the backup but are not read
 back from `adminSettings`.
 
+## Waiting on 26.11
+
+`vimPlugins.R-nvim` is not in 26.05. The nvf entry that used it was removed in
+the commit that moved this flake to stable; `git log -S R.nvim` finds it to put
+back.
+
 ## Dev shells
 
 direnv loads a shell on entering a directory, and Neovim inherits it. Shells
@@ -187,7 +193,9 @@ setup instead.
 
 ## Long-running jobs
 
-swayidle suspends after 30 idle minutes.
+noctalia suspends after 30 idle minutes; its timeouts are in
+`wrappedPrograms/noctalia/settings.json`. swayidle only locks before sleep, for
+the suspends noctalia does not originate itself, such as closing the lid.
 
 ```
 systemd-inhibit --what=idle:sleep --why="<reason>" <command>

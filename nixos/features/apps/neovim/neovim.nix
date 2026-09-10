@@ -397,18 +397,6 @@
               package = typst-preview-nvim;
               setup = "require('typst-preview').setup()";
             };
-            "R.nvim" = {
-              package = pkgs.vimPlugins.R-nvim.overrideAttrs {
-                buildPhase = "make -C rnvimserver";
-              };
-              setup = ''
-                if vim.fn.executable("R") == 1 then
-                  require("r").setup()
-                else
-                  vim.g.R_filetypes = {}
-                end
-              '';
-            };
           };
         };
       };

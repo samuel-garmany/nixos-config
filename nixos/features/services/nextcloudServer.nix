@@ -10,6 +10,13 @@
 
     hostName = "${config.networking.hostName}.${self.tailnet}";
   in {
+    # /mnt/data is nofail, so the units have to wait for the mounts themselves.
+    # postgresql is absent because its module already sets it.
+    systemd.services.nextcloud-cron.unitConfig.RequiresMountsFor = config.services.nextcloud.datadir;
+    systemd.services.nextcloud-setup.unitConfig.RequiresMountsFor = config.services.nextcloud.datadir;
+    systemd.services.phpfpm-nextcloud.unitConfig.RequiresMountsFor = config.services.nextcloud.datadir;
+    systemd.services.postgresqlBackup.unitConfig.RequiresMountsFor = config.services.postgresqlBackup.location;
+
     sops.secrets.nextcloud-adminpass = {};
     sops.secrets.nextcloud-secrets = {};
 

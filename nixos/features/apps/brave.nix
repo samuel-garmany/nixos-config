@@ -1,13 +1,8 @@
 {
   # Enable policies for chromium based browsers like Chromium, Google Chrome or Brave
-  flake.nixosModules.brave-origin = {pkgs, ...}: {
-    xdg.mime.removedAssociations = {
-      "application/pdf" = "brave-origin.desktop";
-      "image/*" = "brave-origin.desktop";
-    };
-
+  flake.nixosModules.brave = {pkgs, ...}: {
     environment.systemPackages = [
-      (pkgs.brave-origin.override {
+      (pkgs.brave.override {
         commandLineArgs = "--ozone-platform-hint=auto";
       })
     ];
@@ -21,6 +16,7 @@
       ];
 
       extraOpts = {
+        DefaultBrowserSettingEnabled = false;
         MetricsReportingEnabled = false;
       };
     };

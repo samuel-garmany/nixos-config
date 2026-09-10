@@ -7,6 +7,10 @@
     # cloudflared proxies / to this port.
     port = 8083;
   in {
+    # /mnt/data is nofail, so the unit has to wait for the mount itself.
+    systemd.services.calibre-web.unitConfig.RequiresMountsFor =
+      config.services.calibre-web.options.calibreLibrary;
+
     services.calibre-web = {
       enable = true;
 
@@ -30,6 +34,8 @@
     };
 
     # https://github.com/janeczku/calibre-web/wiki/Setup-Reverse-Proxy
+    services.nginx.enable = true;
+
     services.nginx.virtualHosts.${self.calibreDomain} = {
       listen = [
         {

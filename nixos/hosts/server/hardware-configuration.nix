@@ -47,7 +47,7 @@
     };
 
     # Write-heavy state, bind mounted so the services still see it under
-    # /var/lib. See the README.
+    # /var/lib.
     fileSystems."/var/lib/postgresql" = {
       device = "/mnt/data/postgresql";
       fsType = "none";
@@ -60,19 +60,6 @@
       fsType = "none";
       options = ["bind" "nofail"];
       depends = ["/mnt/data"];
-    };
-
-    # Without this, nofail lets these start before the SSD is mounted. See the
-    # README. postgresql is absent because its module already sets it.
-    systemd.services = {
-      borgbackup-repo-borgbackup.unitConfig.RequiresMountsFor = "/mnt/data";
-      vaultwarden.unitConfig.RequiresMountsFor = "/var/lib/vaultwarden";
-      backup-vaultwarden.unitConfig.RequiresMountsFor = "/mnt/data";
-      postgresqlBackup.unitConfig.RequiresMountsFor = "/mnt/data";
-      calibre-web.unitConfig.RequiresMountsFor = "/mnt/data";
-      nextcloud-cron.unitConfig.RequiresMountsFor = "/mnt/data";
-      nextcloud-setup.unitConfig.RequiresMountsFor = "/mnt/data";
-      phpfpm-nextcloud.unitConfig.RequiresMountsFor = "/mnt/data";
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";

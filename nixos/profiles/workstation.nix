@@ -32,7 +32,7 @@
       # apps
       self.nixosModules.apps
       self.nixosModules.bitwarden
-      self.nixosModules.brave-origin
+      self.nixosModules.brave
       self.nixosModules.chemistry
       self.nixosModules.fabrication
       self.nixosModules.firefox

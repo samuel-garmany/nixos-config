@@ -1,8 +1,16 @@
 {
   flake.nixosModules.thunderbird = {
+    xdg.mime.defaultApplications = {
+      "x-scheme-handler/mailto" = "thunderbird.desktop";
+    };
+
     # Config also taken from privacy guides
     programs.thunderbird = {
       enable = true;
+
+      policies = {
+        DontCheckDefaultClient = true;
+      };
 
       preferencesStatus = "default";
       preferences = {

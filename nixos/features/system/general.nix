@@ -17,7 +17,6 @@
       description = self.fullName;
       extraGroups = [
         "dialout"
-        "networkmanager"
         "wheel"
       ];
     };
