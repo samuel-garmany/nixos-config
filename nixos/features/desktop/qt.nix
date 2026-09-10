@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   flake.nixosModules.qt = {pkgs, ...}: let
     # Services/Theming/TemplateRegistry.qml in noctalia-shell
     conf = name:
@@ -19,7 +19,7 @@
     # or directory already exists where the symlink is to be created, it will be
     # removed and be replaced by the symlink.
     # tmpfiles.d(5)
-    systemd.user.tmpfiles.rules = [
+    systemd.user.tmpfiles.users.${self.username}.rules = [
       "L+ %h/.config/qt5ct/qt5ct.conf - - - - ${conf "qt5ct"}"
       "L+ %h/.config/qt6ct/qt6ct.conf - - - - ${conf "qt6ct"}"
     ];
